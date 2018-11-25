@@ -50,14 +50,15 @@ class Admin extends Authenticatable
 //                abort(401, $roles.'는 다음 페이지에 권한이 없습니다.');
 //        }
         return $roles === 'admin'
-            ? $this->hasRole($roles) || abort(401, 'admin은 다음 페이지에 권한이 없습니다.')
-            : $this->hasRole($roles) || abort(401, 'author는 다음 페이지에 권한이 없습니다.');
+            ? $this->hasRole($roles) || abort(401, '연구 관리자는 다음 페이지에 권한이 없습니다.')
+            : $this->hasRole($roles) || abort(401, '시스템 운영자는 다음 페이지에 권한이 없습니다.');
     }
 
     public function isAdmin()
     {
-        return ($this-> id === 3|| $this->id === 4) ? true : false;
+        return ($this-> id === 1|| $this->id === 2) ? true : false;
     }
+
 
 
     /**
