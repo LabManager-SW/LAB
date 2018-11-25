@@ -2,33 +2,24 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Admin;
+use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends Controller
+class AdminRegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
 
     use RegistersUsers;
 
     /**
-     * Where to redirect users after registration.
+     * Where to redirect admin after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = 'admin/home';
 
     /**
      * Create a new controller instance.
@@ -49,34 +40,44 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => 'required|string|unique:users',
+            'username' => 'required|string|unique:admins',
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'phone' => 'required|unique:users',
+            'email' => 'required|string|email|max:255|unique:admins',
+            'lab_name' => 'required|string|max:255',
+            'phone' => 'required|unique:admins',
             'password' => 'required|string|min:6|confirmed',
             'univ' => 'required|string',
+            'dept' => 'required|string',
             'birth' => 'required',
             'gender' => 'required',
         ]);
+
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array $data
-     * @return \App\User
+     * @return \App\Admin
      */
     protected function create(array $data)
     {
-        return User::create([
+        $admin=Admin::create([
             'name' => $data['name'],
             'username' => $data['username'],
+            'lab_name' => $data['lab_name'],
             'phone' => $data['phone'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'univ' => $data['univ'],
+            'dept' => $data['dept'],
             'birth' => $data['birth'],
             'gender' => $data['birth'],
         ]);
+        $admin
+            ->roles()
+            ->attach(Role::where('name', 'admin')->first());
+
+        return $admin;
     }
 }

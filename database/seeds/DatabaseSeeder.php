@@ -11,6 +11,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        if(config('database.default')!=='sqlite'){
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        }
+        // Basic roles to be used for admins here.
+        $this->call(RoleTableSeeder::class);
+
+        if(config('database.default')!=='sqlite') {
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        }
     }
 }
