@@ -8,18 +8,27 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class AdminRegisterController extends Controller
 {
-
-    use RegistersUsers;
-
     /**
      * Where to redirect admin after registration.
      *
      * @var string
      */
     protected $redirectTo = 'admin/home';
+
+    public function redirectPath()
+    {
+        if (method_exists($this, 'redirectTo')) {
+            return $this->redirectTo();
+        }
+
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : 'admin/home';
+    }
 
     /**
      * Create a new controller instance.
@@ -62,7 +71,7 @@ class AdminRegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $admin=Admin::create([
+        $user=Admin::create([
             'name' => $data['name'],
             'username' => $data['username'],
             'lab_name' => $data['lab_name'],
@@ -74,10 +83,54 @@ class AdminRegisterController extends Controller
             'birth' => $data['birth'],
             'gender' => $data['birth'],
         ]);
-        $admin
+        $user
             ->roles()
             ->attach(Role::where('name', 'admin')->first());
 
-        return $admin;
+        return $user;
+    }
+    public function showRegistrationForm()
+    {
+        return view('admin.auth.register');
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
+
+    /**
+     * Get the guard to be used during registration.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard();
+    }
+
+    /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
+    {
+        //
     }
 }
