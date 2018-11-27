@@ -24,28 +24,28 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Lab-Manager">
 <meta property="og:description" content="We bring an easy blockchain to your business">
-<meta property="og:url" content="http://www.primeblock.co/">
-<meta property="og:image" content="http://www.primeblock.co/static/assets/img/pb_logo_preview.png">
+<meta property="og:url" content="http://127.0.0.1:8000/">
+<meta property="og:image" content="http://127.0.0.1:8000/dongsu/img/pb_logo_preview.png">
 <meta property="og:image:width" content="800">
 <meta property="og:image:height" content="400">
-<link rel="shortcut icon" href="../static/favicon_32.png">
+<link rel="shortcut icon" href="/dongsu/favicon_32.png">
 
 <!-- Stylesheets -->
 <!-- Web fonts -->
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
 
 <!-- Bootstrap and OneUI CSS framework -->
-<link rel="stylesheet" href="../static/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="/dongsu/css/bootstrap.min.css">
 
-<link rel="stylesheet" href="../static/assets/css/bootstrap.min.css">
-<link rel="stylesheet" id="css-main" href="../static/assets/css/oneui.css">
-<link rel="stylesheet" id="css-customize" href="../static/assets/css/style.css?ver=2018082112">
+<link rel="stylesheet" href="/dongsu/css/bootstrap.min.css">
+<link rel="stylesheet" id="css-main" href="/dongsu/css/oneui.css">
+<link rel="stylesheet" id="css-customize" href="/dongsu/css/style.css?ver=2018082112">
 
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
 
 <!-- Bootstrap and OneUI CSS framework -->
-<link rel="stylesheet" href="../static/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="/dongsu/css/bootstrap.min.css">
 
-<link rel="stylesheet" href="../static/assets/css/bootstrap.min.css">
-<link rel="stylesheet" id="css-main" href="../static/assets/css/oneui.css">
-<link rel="stylesheet" id="css-customize" href="../static/assets/css/style.css?ver=2018082112">
+<link rel="stylesheet" href="/dongsu/css/bootstrap.min.css">
+<link rel="stylesheet" id="css-main" href="/dongsu/css/oneui.css">
+<link rel="stylesheet" id="css-customize" href="/dongsu/css/style.css?ver=2018082112">

@@ -44,7 +44,7 @@ class AdminLoginController extends Controller
 
         $request->session()->flush();
         $request->session()->regenerate();
-        return redirect()->guest(route('admin.login'));
+        return redirect()->guest(url('/login'));
 
     }
 }

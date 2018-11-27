@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('home');
+    return redirect('/home');
 });
 
 Auth::routes();
@@ -26,14 +26,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/', function () {
         return redirect('admin/home');
     });
-    Route::get('/register', [
-        'as' => 'register',
-        'uses' => 'Auth\AdminRegisterController@showRegistrationForm'
-    ]);
-    Route::post('/register', [
-        'as' => '',
-        'uses' => 'Auth\AdminRegisterController@register'
-    ]);
+    Route::get('/register', [ 'as' => 'register', 'uses' => 'Auth\AdminRegisterController@showRegistrationForm'])->name('admin.register');
+    Route::post('/register', [ 'as' => '', 'uses' => 'Auth\AdminRegisterController@register'])->name('admin.register');
 
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');

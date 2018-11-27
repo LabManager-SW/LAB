@@ -1,23 +1,26 @@
 @extends('layouts.app')
-
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
+    <main id="main-container">
+        <!-- Header -->
+        <div class="text-center logo_position">
+            <a href="/"><img src="/dongsu/img/img-logo.png" class="logo_size"></a>
         </div>
-    </div>
-</div>
+        <!--End Header -->
+
+        <!--Login Icon -->
+
+        <div class="feature_interval text-center">
+            <div class="col-sm-6 remove-padding" onclick="location.href='/register'" style="cursor: pointer;">
+                <img src="/dongsu/img/login-user.png" class="icon_size_1">
+                <p class="solution_font">실험 지원자 회원가입</p>
+            </div>
+            <div class="col-sm-6 remove-padding" onclick="location.href='/admin/register'" style="cursor: pointer;">
+                <img src="/dongsu/img/login-researcher.png" class="icon_size_1">
+                <p class="solution_font">연구원 회원가입</p>
+            </div>
+            <div name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login"
+            onclick="location.href='/login'">LOGIN</div>
+        </div>
+        <!-- End Login Icon -->
+    </main>
 @endsection

@@ -14,7 +14,7 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-6">
-                                    <a href="{{('/login')}}" class="{{preg_match('/\/login/', $_SERVER['REQUEST_URI']) ? 'active' : ''}}" id="register-form-link">실험 지원자</a>
+                                    <a href="{{('/login')}}" class="{{preg_match('/\/\/login/', $_SERVER['REQUEST_URI']) ? 'active' : ''}}" id="register-form-link">실험 지원자</a>
                                 </div>
                                 <div class="col-xs-6">
                                     <a href="{{route('admin.login')}}" class="{{preg_match('/\/admin\/login/', $_SERVER['REQUEST_URI']) ? 'active' : ''}}" id="register-form-link">연구원</a>
@@ -25,7 +25,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form id="login-form" action="{{route('login')}}" method="POST" role="form" style="display: block;">
+                                    <form id="login-form" action="{{route('admin.login.submit')}}" method="POST" role="form" style="display: block;">
                                         {{ csrf_field() }}
                                         <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                                             <input type="text" name="username" id="username" tabindex="1"
