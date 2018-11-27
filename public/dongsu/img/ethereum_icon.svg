@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="76px" height="56px" viewBox="0 0 76 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icn/solution/ethereum</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icn/solution/ethereum" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Group" transform="translate(12.000000, 2.000000)" stroke="#002077" stroke-width="1.5">
+            <path d="M50.8569054,26.0197823 C50.8993192,40.2890114 39.4858973,52.0059637 25.4291368,52.0395647 C11.3846899,52.0731657 0,40.3898144 0,26.0197823 C0,11.6483502 11.3846899,0 25.4291368,0 C39.4722155,0 50.8144916,11.6483502 50.8569054,26.0197823 Z" id="Stroke-3" fill="#FFFFFF"></path>
+            <g id="Group-2" transform="translate(15.000000, 9.000000)">
+                <polygon id="Stroke-1" points="10.52754 0.0905550146 10.52754 0 10.5 0.0452775073 10.47246 0 10.47246 0.0905550146 0 17.526777 10.47246 32.9196689 10.47246 33 10.5 32.9591042 10.52754 33 10.52754 32.9196689 21 17.526777"></polygon>
+                <polyline id="Stroke-2" points="0.15940875 17.5710164 10.522303 22.252621 20.8851973 17.5710164"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>
