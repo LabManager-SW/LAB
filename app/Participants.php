@@ -19,7 +19,7 @@ class Participants extends Model
     public function experiment_details(){
         return $this->belongsTo(Experiment_Details::class);
     }
-    public function lab_scheduler(){
-        return $this->belongsTo(Lab_Scheduler::class);
+    public function experiment_result(){
+        return $this->hasMany(Experiment_Result::class);
     }
 }
