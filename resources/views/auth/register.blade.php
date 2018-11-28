@@ -3,7 +3,7 @@
     <main id="main-container">
         <!-- Header -->
         <div class="text-center logo_position">
-            <a href="{{route('register')}}"><img src="/dongsu/img/img-logo.png" class="logo_size"></a>
+            <a href="{{route('home')}}"><img src="/dongsu/img/img-logo.png" class="logo_size"></a>
         </div>
         <!--End Header -->
 
@@ -60,6 +60,28 @@
                     <label>성별</label>
                     <p><input type="radio" name="gender" value="male" checked>남자
                         <input type="radio" name="gender" value="female">여자</p>
+                </div>
+                <div class="form-group">
+                    <label for="univ">대학교</label>
+                    <input type="text" id="univ" name="univ"
+                           class="form-control{{ $errors->has('univ') ? ' is-invalid' : '' }}"
+                           placeholder="대학교명을 입력하세요." required>
+                    @if ($errors->has('univ'))
+                        <span class="invalid-feedback">
+                            <strong>{{ $errors->first('univ') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label for="phone">전화번호</label>
+                    <input id="phone" type="tel" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
+                           name="phone" value="{{ old('phone') }}" required maxlength="11"
+                           pattern="[0-9]{10}[0-9]?" title="'-'를 뺀 휴대전화 번호 10~11자리를 입력해주세요.">
+                    @if ($errors->has('phone'))
+                        <span class="invalid-feedback">
+                            <strong>{{ $errors->first('phone') }}</strong>
+                        </span>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="email">이메일</label>

@@ -36,6 +36,7 @@
 
 <!-- Bootstrap and OneUI CSS framework -->
 <link rel="stylesheet" href="/dongsu/css/bootstrap.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
 
 <link rel="stylesheet" href="/dongsu/css/bootstrap.min.css">
 <link rel="stylesheet" id="css-main" href="/dongsu/css/oneui.css">

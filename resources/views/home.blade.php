@@ -1,5 +1,12 @@
 @extends('layouts.app')
 @section('content')
+    @if(\Illuminate\Support\Facades\Session::has('message'))
+        <div class="alert alert-info alert-dismissible fade in" style="text-align: center;">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>{{ \Illuminate\Support\Facades\Session::get('message', '') }}</strong>
+        </div>
+    @endif
+
     <main id="main-container">
         <!-- Header -->
         <div class="text-center logo_position">
@@ -18,8 +25,13 @@
                 <img src="/dongsu/img/login-researcher.png" class="icon_size_1">
                 <p class="solution_font">연구원 회원가입</p>
             </div>
-            <div name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login"
-            onclick="location.href='/login'">LOGIN</div>
+            @if(\Illuminate\Support\Facades\Auth::check())
+            <div name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" style="cursor:none;"
+            onclick="location.href='/logout'">Log Out</div>
+                @else
+                <div name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login"
+                     onclick="location.href='/login'">LOGIN</div>
+                @endif
         </div>
         <!-- End Login Icon -->
     </main>

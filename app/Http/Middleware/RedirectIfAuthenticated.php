@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class RedirectIfAuthenticated
 {
@@ -20,12 +21,12 @@ class RedirectIfAuthenticated
         switch($guard) {
             case 'admin':
                 if(Auth::guard($guard)->check()) {
-                    return redirect()->route('/admin');
+                    return redirect()->route('home')->with('message','Already Logged in as Administrator');
                 }
                 break;
             default:
                 if(Auth::guard($guard)->check()) {
-                    return redirect()->route('/');
+                    return redirect(route('home'))->with('message', 'Already Logged In');
                 }
         }
 

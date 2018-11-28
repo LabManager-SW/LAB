@@ -76,8 +76,6 @@ class LoginController extends Controller
         Auth::guard('web')->logout();
         $request->session()->flush();
         $request->session()->regenerate();
-
-
         return redirect('/home');
     }
 }

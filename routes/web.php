@@ -15,9 +15,9 @@ Route::get('/', function () {
     return redirect('/home');
 });
 
-Auth::routes();
+Auth::routes(['verify'=>true]);
 
-Route::post('/logout', 'Auth\LoginController@logout')->name('user.logout');
+Route::get('/logout', 'Auth\LoginController@logout')->name('user.logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 //관리자
@@ -31,7 +31,7 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
-    Route::post('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
+    Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
 
     Route::get('/system/', 'Operator\System\SystemController@index');
     Route::get('/resetPassword/{id}', 'Operator\System\SystemController@resetPassword');

@@ -3,7 +3,7 @@
     <main id="main-container">
         <!-- Header -->
         <div class="text-center logo_position">
-            <a href="{{route('admin.register')}}"><img src="/dongsu/img/img-logo.png" class="logo_size"></a>
+            <a href="{{route('home')}}"><img src="/dongsu/img/img-logo.png" class="logo_size"></a>
         </div>
         <!--End Header -->
 
