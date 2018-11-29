@@ -31,6 +31,8 @@ class UploadRequest extends FormRequest
         $rules['payment'] = 'required';
         $rules['method_desc'] = 'required';
         $rules['background'] = 'required';
+        $rules['health_condition'] = 'required';
+        $rules['tester_id'] = 'required';
 
         return $rules;
     }
@@ -50,6 +52,8 @@ class UploadRequest extends FormRequest
             'payment' => '피실험자 수당',
             'method_desc' => '실험 방법 설명',
             'background' => '실험 추진 배경',
+            'health_condition' => '피실험자 자격',
+            'tester_id' => '담당 연구원'
         ];
     }
 }

@@ -42,7 +42,7 @@ class Experiment_ResultController extends Controller
 
     public function store(ResultRequest $request)
     {
-        $data = new Experiment_Details;
+        $data = new Experiment_result;
         $data['remark'] = $request['remark'];
         $data['experiment_id'] = $request['experiment_id'];
         $data['participant_id'] = $request['participant_id'];
@@ -113,6 +113,14 @@ class Experiment_ResultController extends Controller
         $data = Experiment_result::where('id', $id)->delete();
 
         return response()->json([], 204);
+    }
+
+    public function download(Request $request, $id)
+    {
+        $request->user()->authorizeRoles(['admin']);
+        $data = Experiment_Result::where('id', $id)->first();
+        $download_path = (public_path() . '/' . $data->file);
+        return response()->download($download_path);
     }
 
 
