@@ -20,15 +20,16 @@
                                 </thead>
                             </tr>
                             <tbody>
-
                             @forelse($data as $value)
                                 <tr>
                                     <td><input type="checkbox" class="checkthis"/></td>
-                                    <td>1</td>
-                                    <td>청각 실험</td>
-                                    <td>한양대학교</td>
-                                    <td>010-0000-0000</td>
-                                    <td>2018.11.30</td>
+                                    <td>{{$value->id}}</td>
+                                    <td onclick="location.href='/user_mypage/{{$value->id}}'" style="cursor:pointer;">{{$value->name}}</td>
+                                    <td>{{$value->location}}</td>
+                                    <td>@foreach(\Illuminate\Support\Facades\DB::table('testers')->where('id', $value->tester_id)->get() as $tester)
+                                        {{$tester->phone}}
+                                        @endforeach</td>
+                                    <td>{{$value->datetime}}</td>
                                     <td>
                                         <p data-placement="top" data-toggle="tooltip" title="Delete">
                                             <button class="btn btn-danger btn-xs" data-title="Delete"
@@ -55,16 +56,13 @@
                             </tbody>
                         </table>
                         <div class="clearfix"></div>
-                        <ul class="pagination pull-right">
-                            <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a>
-                            </li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
-                        </ul>
+                        @if($data->count())
+                            <div class="text-center" style="text-align:right!important;">
+                                {!! $data->render() !!}
+                            </div>
+                        @endif
+                    </div>
+                    <div class="text-right">
                     </div>
                     <div class="text-right">
                         <a href="index.blade.php"><input type="submit" class="btn btn-primary" name="mainpage"

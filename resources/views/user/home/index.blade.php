@@ -17,11 +17,19 @@
             <div class="btn-spacing">
                 <input type="submit" value="마감 임박" class="btn btn-success">
                 <ul class="btn-spacing list-group">
-                    <li class="list-group-item">연구원이 등록한 실험 정보</li>
-                    <li class="list-group-item">연구원이 등록한 실험 정보</li>
-                    <li class="list-group-item">연구원이 등록한 실험 정보</li>
-                    <li class="list-group-item">연구원이 등록한 실험 정보</li>
-                    <li class="list-group-item">연구원이 등록한 실험 정보</li>
+                    @forelse($data as $value)
+                        <li class="list-group-item" onclick="location.href='/user_home/{{$value->id}}'" style="cursor:pointer;">
+                            <div>
+                                {{\Illuminate\Support\Facades\DB::table('testers')->where('id', $value->tester_id)->value('univ')}}
+                                {{\Illuminate\Support\Facades\DB::table('testers')->where('id', $value->tester_id)->value('dept')}}
+                            </div>
+                            <div>
+                                {{$value->payment}}, {{$value->datetime}}, {{$value->name}}
+                            </div>
+                        </li>
+                    @empty
+                        <li class="list-group-item">없음.</li>
+                    @endforelse
                 </ul>
             </div>
             <div class="btn-spacing">
@@ -30,11 +38,11 @@
                 <input type="submit" value="등록마감일 순으로 보기" class="btn btn-secondary">
                 <input type="submit" value="지역별로 보기" class="btn btn-secondary">
                 <ul class="btn-spacing list-group">
-                    <li class="list-group-item">연구원이 등록한 실험 정보</li><!--클릭 시 -->
-                    <li class="list-group-item">연구원이 등록한 실험 정보</li>
-                    <li class="list-group-item">연구원이 등록한 실험 정보</li>
-                    <li class="list-group-item">연구원이 등록한 실험 정보</li>
-                    <li class="list-group-item">연구원이 등록한 실험 정보</li>
+                    @forelse($data as $value)
+                        <li class="list-group-item">실험 명 : {{$value->name}}</li>
+                    @empty
+                        <li class="list-group-item">없음.</li>
+                    @endforelse
                 </ul>
             </div>
         </div>

@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
         /**
          * Truncate admin table before seeding.
          */
+        $this->call(TestersTableSeeder::class);
         $this->call(Experiment_DetailsTableSeeder::class);
 
         $this->call(ParticipantsTableSeeder::class);
@@ -42,6 +43,7 @@ class DatabaseSeeder extends Seeder
         /**
          * Enaable foreign key constraints after seeding.
          */
+
         if(config('database.default')!=='sqlite') {
             DB::statement('SET FOREIGN_KEY_CHECKS=1');
         }

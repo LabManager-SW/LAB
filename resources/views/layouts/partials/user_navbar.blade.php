@@ -1,7 +1,7 @@
 <div id ="page-container" class="header-navbar-fixed">
     <header id="header-navbar" class="content-mini content-mini-full remove-padding">
         <div class="text-center logo_position">
-            <a href="detail.blade.php"><img src="/dongsu/img/img-logo.png" class="logo_size"></a>
+            <a href="/user_home"><img src="/dongsu/img/img-logo.png" class="logo_size"></a>
         </div>
         <ul class="nav-header pull-right" style="position: absolute; right: 0; top: 20px;">
             <li>
@@ -13,7 +13,7 @@
         <div id="header_interval" class="navbar-collapse navbar-main-collapse collapse header_spacing" style="height: 1px;">
             <div id = "active_event_1">
                 <ul id="ul_interval" class="ul_list remove-padding">
-                    <li class="li_list active">
+                    <li class="li_list {{preg_match('/\/user_home/', $_SERVER['REQUEST_URI']) ? 'active' : ''}}">
                         <a href="{{url('/user_home')}}" class="sliding-link">
                             Main
                         </a>
@@ -23,8 +23,8 @@
                             로그아웃
                         </a>
                     </li>
-                    <li class="li_list">
-                        <a href="/user_mypage" class="sliding-link">
+                    <li class="li_list {{preg_match('/\/user_mypage/', $_SERVER['REQUEST_URI']) ? 'active' : ''}}">
+                        <a href="{{url('/user_mypage')}}" class="sliding-link">
                             마이페이지
                         </a>
                     </li>

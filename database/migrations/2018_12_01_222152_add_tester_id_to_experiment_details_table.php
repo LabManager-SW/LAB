@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTesterIdToSoaColumn extends Migration
+class AddTesterIdToExperimentDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddTesterIdToSoaColumn extends Migration
      */
     public function up()
     {
-        Schema::table('supervisors_and_others', function (Blueprint $table) {
-            $table->unsignedInteger('tester_id')->after('experiment_id');
-            $table->foreign('tester_id')->references('id')->on('testers');
+        Schema::table('experiment_details', function (Blueprint $table) {
+            $table->string('tester_id')->after('background');
         });
     }
 
@@ -26,10 +25,8 @@ class AddTesterIdToSoaColumn extends Migration
      */
     public function down()
     {
-        Schema::table('supervisors_and_others', function (Blueprint $table) {
-            $table->dropForeign(['tester_id']);
+        Schema::table('experiment_details', function (Blueprint $table) {
             $table->dropColumn('tester_id');
-
         });
     }
 }

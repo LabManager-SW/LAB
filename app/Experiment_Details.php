@@ -8,7 +8,7 @@ class Experiment_Details extends Model
 {
     //실험 세부 정보 및 결과
     protected $table='experiment_details';
-    protected $fillable=['name', 'location', 'time_taken', 'payment', 'method_desc', 'poa', 'background', 'health_condition'];
+    protected $fillable=['name', 'location', 'time_taken', 'payment', 'method_desc', 'poa', 'background', 'health_condition','tester_id'];
     public $timestamps= true;
     public function admin(){
         return $this->belongsTo(Admin::class);
@@ -18,8 +18,5 @@ class Experiment_Details extends Model
     }
     public function experiment_result(){
         return $this->hasMany(Experiment_Result::class);
-    }
-    public function soa(){
-        return $this->hasMany(Supervisors_And_Others::class);
     }
 }
