@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
         if(config('database.default')!=='sqlite'){
             DB::statement('SET FOREIGN_KEY_CHECKS=0');
         }
-        \App\User::truncate();
         $this->call(UserTableSeeder::class);
         /**
          * Truncate role table before seeding.
@@ -30,8 +29,9 @@ class DatabaseSeeder extends Seeder
         /**
          * Truncate admin table before seeding.
          */
-        \App\Experiment_Details::truncate();
         $this->call(Experiment_DetailsTableSeeder::class);
+
+        $this->call(ParticipantsTableSeeder::class);
         /**
         \App\Admin::truncate();
         /**
