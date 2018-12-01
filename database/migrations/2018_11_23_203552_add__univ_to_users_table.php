@@ -14,7 +14,7 @@ class AddUnivToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('univ');
+            $table->string('univ')->after('gender');
         });
     }
 

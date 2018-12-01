@@ -21,12 +21,12 @@ class RedirectIfAuthenticated
         switch($guard) {
             case 'admin':
                 if(Auth::guard($guard)->check()) {
-                    return redirect()->route('home')->with('message','Already Logged in as Administrator');
+                    return redirect()->route('/home')->with('message','Already Logged in as Administrator');
                 }
                 break;
             default:
                 if(Auth::guard($guard)->check()) {
-                    return redirect(route('home'))->with('message', 'Already Logged In');
+                    return redirect(route('/user_home'))->with('message', 'Already Logged In');
                 }
         }
 

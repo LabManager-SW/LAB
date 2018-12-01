@@ -28,7 +28,7 @@ class AddUnivIdToDeptTable extends Migration
     public function down()
     {
         Schema::table('dept', function (Blueprint $table) {
-            $table->dropColumn('univ_id');
+            $table->dropForeign('dept_univ_id_foreign');
         });
     }
 }

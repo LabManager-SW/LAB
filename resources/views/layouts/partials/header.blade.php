@@ -6,7 +6,7 @@
 <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<title>{{ config('app.name', '') }}</title>
+<title>{{ config('app.name', 'LAB-MANAGER') }}</title>
 
 <!-- Styles -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -34,9 +34,10 @@
 <!-- Web fonts -->
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
 
-<!-- Bootstrap and OneUI CSS framework -->
-<link rel="stylesheet" href="/dongsu/css/bootstrap.min.css">
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+<!-- Styling for caldendar -->
+<link href='/dongsu/css/fullcalendar.css' rel='stylesheet' />
+<link href='/dongsu/css/fullcalendar.print.css' rel='stylesheet' media='print' />
+
 
 <link rel="stylesheet" href="/dongsu/css/bootstrap.min.css">
 <link rel="stylesheet" id="css-main" href="/dongsu/css/oneui.css">
@@ -50,3 +51,18 @@
 <link rel="stylesheet" href="/dongsu/css/bootstrap.min.css">
 <link rel="stylesheet" id="css-main" href="/dongsu/css/oneui.css">
 <link rel="stylesheet" id="css-customize" href="/dongsu/css/style.css?ver=2018082112">
+
+<script src='/dongsu/js/moment.min.js'></script>
+<script src='/dongsu/js/jquery.min.js'></script>
+<script src="/dongsu/js/core/bootstrap.min.js"></script>
+<script src='/dongsu/js/fullcalendar.min.js'></script>
+<script src='/dongsu/js/lang-all.js'></script>
+<script src="/dongsu/js/core/jquery.slimscroll.min.js"></script>
+<script src="/dongsu/js/core/jquery.scrollLock.min.js"></script>
+<script src="/dongsu/js/core/jquery.appear.min.js"></script>
+<script src="/dongsu/js/core/jquery.countTo.min.js"></script>
+<script src="/dongsu/js/core/jquery.placeholder.min.js"></script>
+<script src="/dongsu/js/core/js.cookie.min.js"></script>
+
+<!-- Page JS Plugins -->
+<script src="/dongsu/js/app.js?ver=2018072001"></script>

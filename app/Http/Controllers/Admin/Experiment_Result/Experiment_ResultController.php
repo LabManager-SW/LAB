@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Experiment_Details;
+namespace App\Http\Controllers\Admin\Experiment_Result;
 
 
 use App\Http\Requests\ResultRequest;

@@ -15,20 +15,31 @@ Route::get('/', function () {
     return redirect('/home');
 });
 
-Auth::routes(['verify'=>true]);
+Auth::routes(['verify' => true]);
+Route::Post('/login', 'Auth\LoginController@login')->name('user.login');
+Route::group(['middleware' => ['auth']], function () {
 
-Route::get('/logout', 'Auth\LoginController@logout')->name('user.logout');
+    Route::get('/logout', 'Auth\LoginController@logout')->name('user.logout');
 
-Route::get('/home', 'HomeController@index')->name('home');
-//관리자
+    Route::get('/home', 'HomeController@index')->name('home');
 
+    /****유저 홈페이지****/
+    Route::get('/user_home', 'User\UserHomeController@index');
+    Route::get('/user_home/{id}', 'User\UserHomeController@show');
+
+    /****유저 마이페이지****/
+    Route::get('/user_mypage/', 'User\UserMyPageController@index');
+    Route::get('/user_mypage/{id}', 'User\UserMyPageController@show');
+});
+
+/********************************관리자******************************/
 Route::prefix('admin')->group(function () {
     Route::get('/', function () {
         return redirect('admin/home');
     });
     /** 연구원 Auth **/
-    Route::get('/register', [ 'as' => 'register', 'uses' => 'Auth\AdminRegisterController@showRegistrationForm'])->name('admin.register');
-    Route::post('/register', [ 'as' => '', 'uses' => 'Auth\AdminRegisterController@register'])->name('admin.register');
+    Route::get('/register', ['as' => 'register', 'uses' => 'Auth\AdminRegisterController@showRegistrationForm'])->name('admin.register');
+    Route::post('/register', ['as' => '', 'uses' => 'Auth\AdminRegisterController@register'])->name('admin.register');
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
     Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');

@@ -1032,10 +1032,7 @@
 }
 
 .ul_list{
-	margin-top: 50px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	margin-left: 70%;
 	list-style: none;
 }
 .ul_list_change{
@@ -1088,13 +1085,9 @@ a {
 }
 
 .li_list {
-	margin: 0 0 0 1%;
-	padding: 0 0 0 0;
+	padding: 0 0 0 12px;
 	border: 0;
-	font-family: SFUIDisplay, SFProDisplay;
-	font-size: 20px;
 	font-color: #2e2e32;
-	line-height: 30px;
 	letter-spacing: normal;
 	float:left;
 }
@@ -1266,4 +1259,34 @@ a {
 	color: #fff;
 	background-color: #1CA347;
 	border-color: #1CA347;
+}
+
+.half-size{
+	width: 50%;
+}
+
+
+.stylish-input-group .input-group-addon{
+	background: white !important; 
+}
+.stylish-input-group .form-control{
+	border-right:0; 
+	box-shadow:0 0 0; 
+	border-color:#ccc;
+}
+.stylish-input-group button{
+	border:0;
+	background:transparent;
+}
+
+.btn-spacing{
+	margin-top: 20px;
+}
+
+.logo_spacing{
+	margin-top: 120px;
+}
+#calendar {
+	max-width: 900px;
+	margin: 0 auto;
 }
