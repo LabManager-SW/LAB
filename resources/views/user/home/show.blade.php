@@ -59,6 +59,13 @@
     </script>
     <main id="main-container">
         <div class="container logo_spacing">
+            @if (\Illuminate\Support\Facades\Session::has('message'))
+                <div class="alert alert-success">
+                    <ul>
+                        <li>{!! \Illuminate\Support\Facades\Session::get('message') !!}</li>
+                    </ul>
+                </div>
+        @endif
             <!-- 실험정보 -->
             <h3 class="text-left">{{$tester->univ}} {{$tester->dept}}</h3>
             <div class="col-md-6">
@@ -109,14 +116,22 @@
             <div class="col-md-6">
                 <div id='calendar'></div>
                 <div class="text-right btn-spacing">
-                    <input type="submit" name="apply" id="apply" class="btn btn-primary" value="지원하기">
-                    <a href="index.blade.php"><input type="submit" name="mainpage" id="mainpage" class="btn btn-primary"
+                    @if(\Illuminate\Support\Facades\Auth::check())
+                    <button type="button" class="btn btn-primary" onclick="location.href='/apply/{{$data->id}}/{{\Illuminate\Support\Facades\Auth::id()}}'">지원하기
+                    </button>
+                    <a href="{{url('/user_home')}}"><input type="submit" name="mainpage" id="mainpage" class="btn btn-primary"
                                                      value="메인페이지로"></a>
+                        @else
+                       <input type="submit" name="apply" id="apply" class="btn btn-primary" value="지원하기" onclick="location.href='/login'">
+                        <a href="{{url('/login')}}"><input type="submit" name="mainpage" id="mainpage" class="btn btn-primary"
+                                                               value="메인페이지로"></a>
+                    @endif
                 </div>
             </div>
             <!-- End calendar -->
         </div>
     </main>
+
 
 
 @endsection

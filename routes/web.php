@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth']], function () {
     /****유저 홈페이지****/
     Route::get('/user_home', 'User\UserHomeController@index')->name('user_home');
     Route::get('/user_home/{id}', 'User\UserHomeController@show');
+    Route::get('/apply/{exp_id}/{id}', 'User\UserHomeController@apply')->name('user.apply');
 
     /****유저 마이페이지****/
     Route::get('/user_mypage/', 'User\UserMyPageController@index');

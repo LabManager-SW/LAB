@@ -46,6 +46,8 @@ class Experiment_DetailsController extends Controller
         $experiment_details['background'] = $request['background'];
         $experiment_details['health_condition'] = $request['health_condition'];
         $experiment_details['tester_id'] = $request['tester_id'];
+        $experiment_details['required_applicant'] = $request['required_applicant'];
+        $experiment_details['applicant'] = 0;
         $experiment_details->save();
 
         return back();
@@ -70,6 +72,8 @@ class Experiment_DetailsController extends Controller
                 'background' => $request['background'],
                 'datetime' => $request['datetime'],
                 'tester_id' => $request['tester_id'],
+                'required_applicant' => $request['required_applicant'],
+                'applicant' => $request['applicant'],
             ]);
         return redirect('admin/experiment_details');
     }

@@ -1,10 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    @if(session('success'))
-        <span class="alert alert-success" role="alert">
-         <strong>{{ session('success') }}</strong>
-     </span>
-    @endif
     <main id="main-container">
         <div class="container logo_spacing">
             <div class="row">

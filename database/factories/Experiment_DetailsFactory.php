@@ -18,6 +18,8 @@ $factory->define(\App\Experiment_Details::class, function (Faker $faker) {
         'background' => $faker->realText(10),
         'datetime' => $faker->date('Y-m-d H'),
         'health_condition' => '비흡연, 키: 165cm 이상 ',
+        'required_applicant' => 10,
+        'applicant' => 0,
         'tester_id' => $faker->randomElement($tester_id_array),
     ];
 });

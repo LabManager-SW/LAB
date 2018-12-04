@@ -33,12 +33,15 @@ class UploadRequest extends FormRequest
         $rules['background'] = 'required';
         $rules['health_condition'] = 'required';
         $rules['tester_id'] = 'required';
+        $rules['required_applicant'] = 'required|integer';
+        $rules['applicant'] = 'nullable';
 
         return $rules;
     }
     public function messages(){
         return[
             'required'=> ':attribute은(는) 필수 입력 항목입니다.',
+            'integer'=> ':attribute은(는) 숫자만 입력할 수 있습니다.',
             'min'=>':attribute은(는) 최소 :min 글자 이상 입력해야 합니다.'
         ];
     }
@@ -53,7 +56,8 @@ class UploadRequest extends FormRequest
             'method_desc' => '실험 방법 설명',
             'background' => '실험 추진 배경',
             'health_condition' => '피실험자 자격',
-            'tester_id' => '담당 연구원'
+            'tester_id' => '담당 연구원',
+            'required_applicant' => '필요 인원 수'
         ];
     }
 }

@@ -16,6 +16,7 @@ $factory->define(\App\Participants::class, function (Faker $faker) {
     $experiment = $faker->unique()->randomElement($experiment_id_array);
     return [
         'experiment_id' => $experiment,
+        'exp_name' => $experiment,
         'user_id' => 11,
         'name' => $user_name,
         'status' => $faker->randomElement($status),
