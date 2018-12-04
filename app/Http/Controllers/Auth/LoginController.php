@@ -51,7 +51,7 @@ class LoginController extends Controller
 
         $this->clearLoginAttempts($request);
 
-        return redirect('/');
+        return redirect('/user_home');
     }
 
     /**
@@ -76,6 +76,6 @@ class LoginController extends Controller
         Auth::guard('web')->logout();
         $request->session()->flush();
         $request->session()->regenerate();
-        return redirect('/home');
+        return redirect('/user_home');
     }
 }

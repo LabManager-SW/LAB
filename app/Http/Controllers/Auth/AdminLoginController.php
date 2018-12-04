@@ -12,6 +12,9 @@ class AdminLoginController extends Controller
     {
         $this->middleware('guest:admin', ['except' => ['logout']]);
     }
+    protected function guard(){
+        return Auth::guard('admin');
+    }
 
     public function showLoginForm()
     {
@@ -20,7 +23,6 @@ class AdminLoginController extends Controller
 
     public function login(Request $request)
     {
-
         $this->validate($request, [
             'username' => 'required',
             'password' => 'required|min:6',

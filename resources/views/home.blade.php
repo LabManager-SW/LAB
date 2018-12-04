@@ -1,12 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    @if(\Illuminate\Support\Facades\Session::has('message'))
-        <div class="alert alert-info alert-dismissible fade in" style="text-align: center;">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <strong>{{ \Illuminate\Support\Facades\Session::get('message', '') }}</strong>
-        </div>
-    @endif
-
     <main id="main-container">
         <!-- Header -->
         <div class="text-center logo_position">

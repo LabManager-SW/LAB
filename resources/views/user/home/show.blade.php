@@ -70,7 +70,8 @@
                     </div>
                     <div class="form-group">
                         <label for="health_condition">피실험자 자격</label>
-                        <input type="text" id="health_condition" class="form-control" value="{{$data->health_condition}}" disabled>
+                        <input type="text" id="health_condition" class="form-control"
+                               value="{{$data->health_condition}}" disabled>
                     </div>
                     <div class="form-group">
                         <label for="location">실험 장소</label>
@@ -86,7 +87,8 @@
                     </div>
                     <div class="form-group">
                         <label for="method_desc">실험방법 설명</label>
-                        <input type="text" id="method_desc" class="form-control" value="{{$data->method_desc}}" disabled>
+                        <input type="text" id="method_desc" class="form-control" value="{{$data->method_desc}}"
+                               disabled>
                     </div>
                     <div class="form-group">
                         <label for="tester_name">담당 연구원</label>

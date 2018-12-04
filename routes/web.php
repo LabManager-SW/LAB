@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     /****유저 홈페이지****/
-    Route::get('/user_home', 'User\UserHomeController@index');
+    Route::get('/user_home', 'User\UserHomeController@index')->name('user_home');
     Route::get('/user_home/{id}', 'User\UserHomeController@show');
 
     /****유저 마이페이지****/
@@ -37,6 +37,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/', function () {
         return redirect('admin/home');
     });
+    Route::get('/home', 'Admin\AdminHomeController@index')->name('admin_home');
     /** 연구원 Auth **/
     Route::get('/register', ['as' => 'register', 'uses' => 'Auth\AdminRegisterController@showRegistrationForm'])->name('admin.register');
     Route::post('/register', ['as' => '', 'uses' => 'Auth\AdminRegisterController@register'])->name('admin.register');
