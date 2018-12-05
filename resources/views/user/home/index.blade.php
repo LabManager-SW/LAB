@@ -47,6 +47,14 @@
         <li class="list-group-item">없음.</li>
         @endforelse
     </ul>
+    <div class="clearfix"></div>
+    @if($data->count())
+    <div class="text-center" style="text-align:right!important;">
+        {!! $data->render() !!}
+    </div>
+    @endif
+
+
 </div>
 </div>
 </main>
