@@ -20,6 +20,12 @@ class UserHomeController extends Controller
 
         return view('user.home.index', compact('data'));
     }
+    public function show_all(){
+        $data = Experiment_Details::latest()->paginate(10);
+
+        return view('user.home.all', compact('data'));
+    }
+
 
     public function search()
     {
