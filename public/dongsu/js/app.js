@@ -53,8 +53,6 @@ var App = function() {
             jQuery(this).tab('show');
         });
 
-        // Init form placeholder (for IE9)
-        jQuery('.form-control').placeholder();
     };
 
     // Layout functionality
@@ -74,8 +72,6 @@ var App = function() {
             });
         }
 
-        // Init sidebar and side overlay custom scrolling
-        uiHandleScroll('init');
 
         // Init transparent header functionality (solid on scroll)
         if ($lPage.hasClass('header-navbar-fixed') && $lPage.hasClass('header-navbar-transparent')) {
@@ -114,91 +110,7 @@ var App = function() {
     };
 
     // Handles sidebar and side overlay custom scrolling functionality
-    var uiHandleScroll = function($mode) {
-        var $windowW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
-        // Init scrolling
-        if ($mode === 'init') {
-            // Init scrolling only if required the first time
-            uiHandleScroll();
-
-            // Handle scrolling on resize or orientation change
-            var $sScrollTimeout;
-
-            jQuery(window).on('resize orientationchange', function(){
-                clearTimeout($sScrollTimeout);
-
-                $sScrollTimeout = setTimeout(function(){
-                    uiHandleScroll();
-                }, 150);
-            });
-        } else {
-            // If screen width is greater than 991 pixels and .side-scroll is added to #page-container
-            if ($windowW > 991 && $lPage.hasClass('side-scroll')) {
-                // Turn scroll lock off (sidebar and side overlay - slimScroll will take care of it)
-                jQuery($lSidebar).scrollLock('disable');
-                jQuery($lSideOverlay).scrollLock('disable');
-
-                // If sidebar scrolling does not exist init it..
-                if ($lSidebarScroll.length && (!$lSidebarScroll.parent('.slimScrollDiv').length)) {
-                    $lSidebarScroll.slimScroll({
-                        height: $lSidebar.outerHeight(),
-                        color: '#fff',
-                        size: '5px',
-                        opacity : .35,
-                        wheelStep : 15,
-                        distance : '2px',
-                        railVisible: false,
-                        railOpacity: 1
-                    });
-                }
-                else { // ..else resize scrolling height
-                    $lSidebarScroll
-                        .add($lSidebarScroll.parent())
-                        .css('height', $lSidebar.outerHeight());
-                }
-
-                // If side overlay scrolling does not exist init it..
-                if ($lSideOverlayScroll.length && (!$lSideOverlayScroll.parent('.slimScrollDiv').length)) {
-                    $lSideOverlayScroll.slimScroll({
-                        height: $lSideOverlay.outerHeight(),
-                        color: '#000',
-                        size: '5px',
-                        opacity : .35,
-                        wheelStep : 15,
-                        distance : '2px',
-                        railVisible: false,
-                        railOpacity: 1
-                    });
-                }
-                else { // ..else resize scrolling height
-                    $lSideOverlayScroll
-                        .add($lSideOverlayScroll.parent())
-                        .css('height', $lSideOverlay.outerHeight());
-                }
-            } else {
-                // Turn scroll lock on (sidebar and side overlay)
-                jQuery($lSidebar).scrollLock('enable');
-                jQuery($lSideOverlay).scrollLock('enable');
-
-                // If sidebar scrolling exists destroy it..
-                if ($lSidebarScroll.length && $lSidebarScroll.parent('.slimScrollDiv').length) {
-                    $lSidebarScroll
-                        .slimScroll({destroy: true});
-                    $lSidebarScroll
-                        .attr('style', '');
-                }
-
-                // If side overlay scrolling exists destroy it..
-                if ($lSideOverlayScroll.length && $lSideOverlayScroll.parent('.slimScrollDiv').length) {
-                    $lSideOverlayScroll
-                        .slimScroll({destroy: true});
-                    $lSideOverlayScroll
-                        .attr('style', '');
-                }
-            }
-        }
-    };
 
     // Layout API
     var uiLayoutApi = function($mode) {
