@@ -1,5 +1,62 @@
 @extends('layouts.app')
 @section('content')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(document).ready(function () {
+            $('#calendar').fullCalendar({
+
+                <!--Header Section Including Previous,Next and Today-->
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,basicWeek,basicDay'
+                },
+
+                <!--Default Date-->
+                defaultDate: '2018-11-30', lang: 'ko',
+                editable: true,
+
+                <!--Event Section-->
+                eventLimit: true, // allow "more" link when too many events
+                // 여기서 PHP 코드로 값 불러와서 작성가능, 아래는 예시로 넣어 놓은 것들
+                events: [
+                    {
+                        title: 'All Day Event',
+                        start: '2018-11-01'
+                    },
+                    {
+                        title: 'Long Event',
+                        start: '2018-11-03',
+                        end: '2018-11-10'
+                    },
+                    {
+                        id: 999,
+                        title: 'Repeating Event',
+                        start: '2018-11-09T16:00:00'
+                    },
+                    {
+                        id: 999,
+                        title: 'Repeating Event',
+                        start: '2018-11-16T16:00:00'
+                    },
+                    {
+                        title: 'Conference',
+                        start: '2018-11-11',
+                        end: '2015-02-13'
+                    },
+                    {
+                        title: 'Click for Google',
+                        url: 'http://google.com/',
+                        start: '2018-11-28'
+                    }
+                ]
+            });
+        });
+    </script>
     <main id="main-container">
         <div class="container logo_spacing">
             @if (\Illuminate\Support\Facades\Session::has('message'))
@@ -61,8 +118,7 @@
                 </div>
                 <div class="text-right btn-spacing">
                     @if(\Illuminate\Support\Facades\Auth::check())
-                    <button type="button" class="btn btn-primary" onclick="location.href='/apply/{{$data->id}}/{{\Illuminate\Support\Facades\Auth::id()}}'">지원하기
-                    </button>
+                    <button type="button" class="btn btn-primary" onclick="location.href='/apply/{{$data->id}}/{{\Illuminate\Support\Facades\Auth::id()}}'">지원하기</button>
                     <a href="{{url('/user_home')}}"><input type="submit" name="mainpage" id="mainpage" class="btn btn-primary"
                                                      value="메인페이지로"></a>
                         @else
