@@ -6,6 +6,7 @@ use App\Participants;
 use App\Http\Controllers\Controller;
 
 use App\Testers;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Experiment_Details;
 use Illuminate\Support\Facades\App;
@@ -33,5 +34,14 @@ class UserMyPageController extends Controller
         $value = Experiment_Details::where('id', $id)->first();
         $tester = Testers::where('id', $value['tester_id'])->first();
         return view('user.mypage.show', compact('value', 'tester'));
+    }
+
+    public function delete($id)
+    {
+        $user = Auth::user();
+        $data = Participants::where('user_id', $user['id'])->where('experiment_id', $id)->first();
+        $delete = $data->delete();
+        return "true";
+
     }
 }

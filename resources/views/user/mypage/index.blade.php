@@ -24,23 +24,24 @@
                                 <tr>
                                     <td><input type="checkbox" class="checkthis"/></td>
                                     <td>{{$value->id}}</td>
-                                    <td onclick="location.href='/user_mypage/{{$value->id}}'" style="cursor:pointer;">{{$value->name}}</td>
+                                    <td onclick="location.href='/user_mypage/{{$value->id}}'"
+                                        style="cursor:pointer;">{{$value->name}}</td>
                                     <td>{{$value->location}}</td>
                                     <td>@foreach(\Illuminate\Support\Facades\DB::table('testers')->where('id', $value->tester_id)->get() as $tester)
-                                        {{$tester->phone}}
+                                            {{$tester->phone}}
                                         @endforeach</td>
                                     <td>{{$value->datetime}}</td>
                                     <td>
-                                        <p data-placement="top" data-toggle="tooltip" title="Delete">
+                                        <p data-placement="top" data-toggle="tooltip" title="Delete"
+                                           onclick="deleting({{$value->id}})">
                                             <button class="btn btn-danger btn-xs" data-title="Delete"
-                                                    data-toggle="modal"
-                                                    data-target="#delete"><span
+                                                    data-toggle="modal" data-target="#delete"><span
                                                         class="glyphicon glyphicon-trash"></span>
                                             </button>
                                         </p>
                                     </td>
                                 </tr>
-                                @empty
+                            @empty
                                 <tr>
                                     <td><input type="checkbox" class="checkthis"/></td>
                                     <td>없음.</td>
@@ -52,7 +53,7 @@
                                         X
                                     </td>
                                 </tr>
-                                @endforelse
+                            @endforelse
                             </tbody>
                         </table>
                         <div class="clearfix"></div>
@@ -71,35 +72,28 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span
-                                    class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                        <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
-                    </div>
-                    <div class="modal-body">
-
-                        <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you
-                            sure you want to delete this Record?
-                        </div>
-
-                    </div>
-                    <div class="modal-footer ">
-                        <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok-sign"></span> Yes
-                        </button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><span
-                                    class="glyphicon glyphicon-remove"></span> No
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </main>
 @endsection
 
 @section('script')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        function deleting(id) {
+            $('div.id');
+            if (confirm('글을 삭제합니다.')) {
+                $.ajax({
+                    type: 'delete',
+                    url: '/user_mypage/delete/' + id
+                }).success(function () {
+                    window.location.href = '/user_mypage/';
+                })
+            }
+        }
+    </script>
     <script>
         $(document).ready(function () {
             $("#mytable #checkall").click(function () {

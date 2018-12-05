@@ -29,8 +29,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/apply/{exp_id}/{id}', 'User\UserHomeController@apply')->name('user.apply');
 
     /****유저 마이페이지****/
-    Route::get('/user_mypage/', 'User\UserMyPageController@index');
+    Route::get('/user_mypage/', 'User\UserMyPageController@index')->name('user.mypage');
     Route::get('/user_mypage/{id}', 'User\UserMyPageController@show');
+    Route::delete('/user_mypage/delete/{id}', 'User\UserMyPageController@delete')->name('user_mypage.delete');
 });
 
 /********************************관리자******************************/
