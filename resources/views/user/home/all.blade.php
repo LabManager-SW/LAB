@@ -1,5 +1,16 @@
 @extends('layouts.app')
 @section('content')
+    <style>
+        table, th, td{
+            text-align: center;
+        }
+        table{
+            width:100%;
+        }
+        td{
+            padding:1vw;
+        }
+    </style>
     <main id="main-container">
         <div class="container logo_spacing">
             <div class="row">
