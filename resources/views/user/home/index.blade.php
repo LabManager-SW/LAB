@@ -36,8 +36,8 @@
                     @endforelse
                 </div>
             </div>
-            <div>
-                <div onclick="location.href='/user_home/all'" style="cursor:pointer;">전체보기</div>
+            <div style="text-align:right;">
+                <span onclick="location.href='/user_home/all'" style="cursor:pointer; padding:1vw;">전체보기</span>
             </div>
             <div class="btn-spacing">
                 <input type="submit" value="실시간 현황" class="btn btn-success">

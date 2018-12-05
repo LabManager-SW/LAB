@@ -57,7 +57,8 @@
             <!-- End 실험정보 -->
             <!-- calendar -->
             <div class="col-md-6">
-                <div id='calendar'></div>
+                <div id='calendar'>
+                </div>
                 <div class="text-right btn-spacing">
                     @if(\Illuminate\Support\Facades\Auth::check())
                     <button type="button" class="btn btn-primary" onclick="location.href='/apply/{{$data->id}}/{{\Illuminate\Support\Facades\Auth::id()}}'">지원하기
