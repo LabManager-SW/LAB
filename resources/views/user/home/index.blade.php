@@ -36,9 +36,6 @@
                     @endforelse
                 </div>
             </div>
-            <div style="text-align:right;">
-                <span onclick="location.href='/user_home/all'" style="cursor:pointer; padding:1vw;">전체보기</span>
-            </div>
             <div class="btn-spacing">
                 <input type="submit" value="실시간 현황" class="btn btn-success">
                 <input type="submit" value="급여순" class="btn btn-secondary">
@@ -51,6 +48,12 @@
                         <li class="list-group-item">없음.</li>
                     @endforelse
                 </ul>
+                <div class="clearfix"></div>
+                @if($data->count())
+                    <div class="text-center" style="text-align:right!important;">
+                        {!! $data->render() !!}
+                    </div>
+                @endif
             </div>
         </div>
     </main>

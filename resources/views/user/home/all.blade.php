@@ -1,42 +1,44 @@
 @extends('layouts.app')
 @section('content')
+    <<<<<<< HEAD
     <style>
-        table, th, td{
+        table, th, td {
             text-align: center;
         }
-        table{
-            width:100%;
+
+        table {
+            width: 100%;
         }
-        td{
-            padding:1vw;
+
+        td {
+            padding: 1vw;
         }
     </style>
     <main id="main-container">
+
         <div class="container logo_spacing">
             <div class="row">
                 <div class="col-xs-8">
                     <div class="input-group stylish-input-group">
                         <input type="text" class="form-control" placeholder="대학교, 실험이름 등으로 검색">
                         <span class="input-group-addon">
-                      <button type="submit">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>  
-                </span>
+                  <button type="submit">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
                     </div>
                 </div>
             </div>
-            <div>
-                <table class="pagecontents">
+            <div class="table-responsive btn-spacing">
+                <table id="mytable" class="table table-bordred table-striped">
                     <thead>
-                    <tr>
-                        <th>번호</th>
-                        <th>실험명</th>
-                        <th>위치</th>
-                        <th>수당</th>
-                        <th>주관 대학</th>
-                        <th>주관 학부</th>
-                        <th>날짜</th>
-                    </tr>
+                    <th>번호</th>
+                    <th>실험명</th>
+                    <th>위치</th>
+                    <th>수당</th>
+                    <th>주관 대학</th>
+                    <th>주관 학부</th>
+                    <th>날짜</th>
                     </thead>
                     <tbody>
                     @forelse($data as $value)
