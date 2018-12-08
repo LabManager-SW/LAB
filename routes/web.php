@@ -40,7 +40,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/', function () {
         return redirect('admin/home');
     });
-    Route::get('/home', 'Admin\AdminHomeController@index')->name('admin_home');
+    Route::get('/home', 'Admin\Experiment_Details\Experiment_DetailsController@index')->name('admin_home');
     /** 연구원 Auth **/
     Route::get('/register', ['as' => 'register', 'uses' => 'Auth\AdminRegisterController@showRegistrationForm'])->name('admin.register');
     Route::post('/register', ['as' => '', 'uses' => 'Auth\AdminRegisterController@register'])->name('admin.register');

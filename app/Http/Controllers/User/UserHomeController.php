@@ -34,9 +34,10 @@ class UserHomeController extends Controller
 
     public function show(Request $request, $id)
     {
+        $all_data = Experiment_Details::all();
         $data = Experiment_Details::where('id', $id)->first();
         $tester = Testers::where('id', $data['tester_id'])->first();
-        return view('user.home.show', compact('data', 'tester'));
+        return view('user.home.show', compact('data', 'tester', 'all_data'));
     }
 
     public function apply(Request $request, $exp_id, $id)

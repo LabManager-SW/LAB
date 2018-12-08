@@ -54,6 +54,8 @@
                         {!! $data->render() !!}
                     </div>
                 @endif
+
+
             </div>
         </div>
     </main>

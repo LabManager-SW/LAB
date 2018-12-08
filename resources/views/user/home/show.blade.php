@@ -17,42 +17,20 @@
                 },
 
                 <!--Default Date-->
-                defaultDate: '2018-11-30', lang: 'ko',
+                defaultDate: '{{\Illuminate\Support\Carbon::now()}}', lang: 'ko',
                 editable: true,
 
                 <!--Event Section-->
                 eventLimit: true, // allow "more" link when too many events
                 // 여기서 PHP 코드로 값 불러와서 작성가능, 아래는 예시로 넣어 놓은 것들
                 events: [
+                    @foreach($all_data as $value)
                     {
-                        title: 'All Day Event',
-                        start: '2018-11-01'
+                        title: '{{$value['name']}}',
+                        start: '{{$value['created_at']}}',
+                        end: '{{$value['end_recruit_date']}}'
                     },
-                    {
-                        title: 'Long Event',
-                        start: '2018-11-03',
-                        end: '2018-11-10'
-                    },
-                    {
-                        id: 999,
-                        title: 'Repeating Event',
-                        start: '2018-11-09T16:00:00'
-                    },
-                    {
-                        id: 999,
-                        title: 'Repeating Event',
-                        start: '2018-11-16T16:00:00'
-                    },
-                    {
-                        title: 'Conference',
-                        start: '2018-11-11',
-                        end: '2015-02-13'
-                    },
-                    {
-                        title: 'Click for Google',
-                        url: 'http://google.com/',
-                        start: '2018-11-28'
-                    }
+                    @endforeach
                 ]
             });
         });

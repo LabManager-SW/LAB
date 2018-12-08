@@ -23,14 +23,14 @@ class Experiment_DetailsController extends Controller
     public function index()
     {
         $data = Experiment_Details::all();
-        return view('admin.experiment_details.index', compact('data'));
+        return view('admin.Experiment_details.index', compact('data'));
     }
 
     public function create()
     {
         $testers = Testers::all();
         $data = Experiment_Details::all();
-        return view('admin.experiment_details.create', compact('data', 'testers'));
+        return view('admin.Experiment_details.new', compact('data', 'testers'));
     }
 
 
@@ -39,6 +39,7 @@ class Experiment_DetailsController extends Controller
         $experiment_details = new Experiment_Details;
         $experiment_details['name'] = $request['name'];
         $experiment_details['time_taken'] = $request['time_taken'];
+        $experiment_details['end_recruit_date'] = $request['end_recruit_date'];
         $experiment_details['payment'] = $request['payment'];
         $experiment_details['method_desc'] = $request['method_desc'];
         $experiment_details['location'] = $request['location'];
@@ -56,7 +57,7 @@ class Experiment_DetailsController extends Controller
     public function edit($id)
     {
         $data = Experiment_Details::where('id', $id)->get()[0];
-        return view('admin.experiment_details.edit', compact('data', 'soa'));
+        return view('admin.Experiment_details.edit', compact('data', 'soa'));
     }
 
     public function update(UploadRequest $request, $id)
@@ -65,6 +66,7 @@ class Experiment_DetailsController extends Controller
             ->update([
                 'name' => $request['name'],
                 'location' => $request['location'],
+                'end_recruit_date' => $request['end_recruit_date'],
                 'time_taken' => $request['time_taken'],
                 'payment' => $request['payment'],
                 'method_desc' => $request['method_desc'],

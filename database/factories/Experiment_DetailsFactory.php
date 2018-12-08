@@ -8,6 +8,8 @@ $factory->define(\App\Experiment_Details::class, function (Faker $faker) {
     foreach ($tester_id as $id) {
         array_push($tester_id_array, $id->id);
     }
+    $rand=random_int(0,6);
+    $now=\Carbon\Carbon::now()->addDays($rand);
     return [
         'name' => $faker->name,
         'location' => '한양대학교 임상병리학 연구실',
@@ -19,6 +21,7 @@ $factory->define(\App\Experiment_Details::class, function (Faker $faker) {
         'datetime' => $faker->date('Y-m-d H'),
         'health_condition' => '비흡연, 키: 165cm 이상 ',
         'required_applicant' => 10,
+        'end_recruit_date' => $now ,
         'applicant' => 0,
         'tester_id' => $faker->randomElement($tester_id_array),
     ];

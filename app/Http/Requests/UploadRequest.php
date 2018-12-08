@@ -26,6 +26,7 @@ class UploadRequest extends FormRequest
 
         $rules['name'] = 'required';
         $rules['location'] = 'required';
+        $rules['end_recruit_date'] = 'required';
         $rules['poa'] = 'required';
         $rules['time_taken'] = 'required';
         $rules['payment'] = 'required';
@@ -57,6 +58,7 @@ class UploadRequest extends FormRequest
             'background' => '실험 추진 배경',
             'health_condition' => '피실험자 자격',
             'tester_id' => '담당 연구원',
+            'end_recruit_date' => '공고 마감일',
             'required_applicant' => '필요 인원 수'
         ];
     }

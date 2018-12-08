@@ -93,7 +93,7 @@
 <script src="/dongsu/js/core/jquery.countTo.min.js"></script>
 <script src="/dongsu/js/core/jquery.placeholder.min.js"></script>
 <script src="/dongsu/js/core/js.cookie.min.js"></script>
-<script src="../static/assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
+<script src="/dongsu/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
 
 <!-- Page JS Plugins -->
 <script src="/dongsu/js/app.js?ver=2018072001"></script>
