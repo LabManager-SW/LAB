@@ -27,11 +27,20 @@
                     @foreach($all_data as $value)
                     {
                         title: '{{$value['name']}}',
+                        time: '{{$value['time_taken']}}',//실험 시간 컬럼
+                        tester: '{{$value['']}}',//연구원명 컬럼들어가야됨
                         start: '{{$value['created_at']}}',
-                        end: '{{$value['end_recruit_date']}}'
+                        end: '{{$value['end_recruit_date']}}',
+                        condition: '{{%value['']}}' //모집명, 모집완료 들어가야됨
                     },
                     @endforeach
-                ]
+                ],
+
+                eventRender: function(event, element) {
+                    element.find('.fc-title').append("<br/>" + event.time); 
+                    element.find('.fc-title').append("<br/>" + event.tester); 
+                    element.find('.fc-title').append("<br/>" + event.condition);
+            }
             });
         });
     </script>
@@ -46,7 +55,7 @@
         @endif
             <!-- 실험정보 -->
             <h3 class="text-left">{{$tester->univ}} {{$tester->dept}}</h3>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <h4 class="btn-spacing">실험명: {{$data->name}}</h4>
                 <form>
                     <div class="form-group">
@@ -91,7 +100,7 @@
             </div>
             <!-- End 실험정보 -->
             <!-- calendar -->
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div id='calendar'>
                 </div>
                 <div class="text-right btn-spacing">
