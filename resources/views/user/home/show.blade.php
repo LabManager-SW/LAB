@@ -28,10 +28,14 @@
                     {
                         title: '{{$value['name']}}',
                         time: '{{$value['time_taken']}}',//실험 시간 컬럼
-                        tester: '{{$value['']}}',//연구원명 컬럼들어가야됨
+                        tester: '{{\Illuminate\Support\Facades\DB::table('Testers')->where('id', $value->tester_id)->get()[0]->name}}',//연구원명 컬럼들어가야됨
                         start: '{{$value['created_at']}}',
                         end: '{{$value['end_recruit_date']}}',
-                        condition: '{{%value['']}}' //모집명, 모집완료 들어가야됨
+                        @if($value['required_applicant'] === $value['applicant'])
+                        condition: "모집 완료",
+                        @else
+                        condition: "현재 인원: " + "{{$value['applicant']}}" + '/' + "{{$value['required_applicant']}}",
+                        @endif
                     },
                     @endforeach
                 ],
