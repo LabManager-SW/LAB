@@ -108,7 +108,7 @@ class Experiment_ResultController extends Controller
     public function delete($id)
     {
         $deletes = Experiment_Result::where('id', $id)->get()[0];
-        unlink($deletes['file']);
+        unlink($deletes['file']); /** ->delete()는 DB의 내용을 지울 뿐. unlink를 함으로써 서버 내  파일의 실제 주소로 가서 파일 삭제**/
 
         $data = Experiment_result::where('id', $id)->delete();
 
