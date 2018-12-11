@@ -28,11 +28,11 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleTableSeeder::class);
         /**
          * Truncate admin table before seeding.
-         */
-        $this->call(TestersTableSeeder::class);
-        $this->call(Experiment_DetailsTableSeeder::class);
-
-        $this->call(ParticipantsTableSeeder::class);
+//         */
+//        $this->call(TestersTableSeeder::class);
+//        $this->call(Experiment_DetailsTableSeeder::class);
+//
+//        $this->call(ParticipantsTableSeeder::class);
         /**
         \App\Admin::truncate();
         /**

@@ -21,7 +21,7 @@ class CreateParticipantsTable extends Migration
             $table->timestamps();
         });
         Schema::table('participants', function($table){
-            $table->foreign('experiment_id')->references('id')->on('experiment_details')->onDelete('cascade');
+            $table->foreign('experiment_id')->references('id')->on('experiment')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

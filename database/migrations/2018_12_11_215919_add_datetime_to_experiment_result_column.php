@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DropRemarkFromExperimentDetailsTable extends Migration
+class AddDatetimeToExperimentResultColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class DropRemarkFromExperimentDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::table('experiment_details', function (Blueprint $table) {
-            $table->dropColumn('remark');
+        Schema::table('experiment_result', function (Blueprint $table) {
+            $table->dateTime('datetime');
         });
     }
 
@@ -25,8 +25,8 @@ class DropRemarkFromExperimentDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::table('experiment_details', function (Blueprint $table) {
-            $table->longText('remark');
+        Schema::table('experiment_result', function (Blueprint $table) {
+            $table->dropColumn('datetime');
         });
     }
 }

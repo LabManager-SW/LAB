@@ -13,8 +13,8 @@ class AddEndRecruitDateColumnToExperimentDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::table('Experiment_Details', function (Blueprint $table) {
-            $table->dateTime('end_recruit_date')->after('name');
+        Schema::table('experiment_details', function (Blueprint $table) {
+            $table->dateTime('end_recruit_date')->after('method_desc');
         });
     }
 
@@ -25,7 +25,7 @@ class AddEndRecruitDateColumnToExperimentDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::table('Experiment_Details', function (Blueprint $table) {
+        Schema::table('experiment_details', function (Blueprint $table) {
             $table->dropColumn('end_recruit_date');
         });
     }

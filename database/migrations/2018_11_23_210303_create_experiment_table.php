@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DropObjectiveAndResultColumnFromTable extends Migration
+class CreateExperimentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class DropObjectiveAndResultColumnFromTable extends Migration
      */
     public function up()
     {
-        Schema::table('experiment_details', function (Blueprint $table) {
-                $table->dropColumn(['objective', 'result']);
+        Schema::create('experiment', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->mediumText('poa');
+            $table->mediumText('background');
+            $table->timestamps();
         });
     }
 
@@ -25,9 +29,6 @@ class DropObjectiveAndResultColumnFromTable extends Migration
      */
     public function down()
     {
-        Schema::table('experiment_details', function (Blueprint $table) {
-            $table->string('objective');
-            $table->string('result');
-        });
+        Schema::dropIfExists('experiment');
     }
 }

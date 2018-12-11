@@ -16,8 +16,8 @@ class Participants extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-    public function experiment_details(){
-        return $this->belongsTo(Experiment_Details::class);
+    public function experiment(){
+        return $this->belongsTo(Experiment::class);
     }
     public function experiment_result(){
         return $this->hasMany(Experiment_Result::class);

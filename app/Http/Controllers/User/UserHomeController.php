@@ -45,7 +45,7 @@ class UserHomeController extends Controller
         $user = User::where('id', $id)->first();
         /**해당 지원자 객체를 DB의 User table에서 받기**/
         $exp = Experiment_Details::where('id', $exp_id)->first();
-        /**해당 실험 객체를 DB의 Experiment_Details table에서 받기**/
+        /**해당 실험 객체를 DB의 Experiment table에서 받기**/
         if (DB::table('participants')->where('user_id', '=', $id)
             ->where('experiment_id', '=', $exp_id)
             ->exists()) {

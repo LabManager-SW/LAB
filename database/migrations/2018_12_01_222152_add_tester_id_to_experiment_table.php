@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLabSchedulerTable extends Migration
+class AddTesterIdToExperimentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateLabSchedulerTable extends Migration
      */
     public function up()
     {
-        Schema::create('lab_scheduler', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('user_name');
-            $table->string('experiment_name');
-            $table->dateTime('datetime');
-            $table->timestamps();
+        Schema::table('experiment', function (Blueprint $table) {
+            $table->string('tester_id')->after('background');
         });
     }
 
@@ -29,6 +25,8 @@ class CreateLabSchedulerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lab_scheduler');
+        Schema::table('experiment', function (Blueprint $table) {
+            $table->dropColumn('tester_id');
+        });
     }
 }

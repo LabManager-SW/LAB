@@ -24,7 +24,7 @@
                 eventLimit: true, // allow "more" link when too many events
                 // 여기서 PHP 코드로 값 불러와서 작성가능, 아래는 예시로 넣어 놓은 것들
                 events: [
-                    @foreach($all_data as $value)
+                        @foreach($all_data as $value)
                     {
                         title: '{{$value['name']}}',
                         time: '{{$value['time_taken']}}',//실험 시간 컬럼
@@ -40,11 +40,11 @@
                     @endforeach
                 ],
 
-                eventRender: function(event, element) {
-                    element.find('.fc-title').append("<br/>" + event.time); 
-                    element.find('.fc-title').append("<br/>" + event.tester); 
+                eventRender: function (event, element) {
+                    element.find('.fc-title').append("<br/>" + event.time);
+                    element.find('.fc-title').append("<br/>" + event.tester);
                     element.find('.fc-title').append("<br/>" + event.condition);
-            }
+                }
             });
         });
     </script>
@@ -57,7 +57,7 @@
                     </ul>
                 </div>
         @endif
-            <!-- 실험정보 -->
+        <!-- 실험정보 -->
             <h3 class="text-left">{{$tester->univ}} {{$tester->dept}}</h3>
             <div class="col-md-4">
                 <h4 class="btn-spacing">실험명: {{$data->name}}</h4>
@@ -109,13 +109,19 @@
                 </div>
                 <div class="text-right btn-spacing">
                     @if(\Illuminate\Support\Facades\Auth::check())
-                    <button type="button" class="btn btn-primary" onclick="location.href='/apply/{{$data->id}}/{{\Illuminate\Support\Facades\Auth::id()}}'">지원하기</button>
-                    <a href="{{url('/user_home')}}"><input type="submit" name="mainpage" id="mainpage" class="btn btn-primary"
-                                                     value="메인페이지로"></a>
-                        @else
-                       <input type="submit" name="apply" id="apply" class="btn btn-primary" value="지원하기" onclick="location.href='/login'">
-                        <a href="{{url('/login')}}"><input type="submit" name="mainpage" id="mainpage" class="btn btn-primary"
+                        <button type="button" class="btn btn-primary"
+                                onclick="location.href='/apply/{{$data->id}}/{{\Illuminate\Support\Facades\Auth::id()}}'">
+                            지원하기
+                        </button>
+                        <a href="{{url('/user_home')}}"><input type="submit" name="mainpage" id="mainpage"
+                                                               class="btn btn-primary"
                                                                value="메인페이지로"></a>
+                    @else
+                        <input type="submit" name="apply" id="apply" class="btn btn-primary" value="지원하기"
+                               onclick="location.href='/login'">
+                        <a href="{{url('/login')}}"><input type="submit" name="mainpage" id="mainpage"
+                                                           class="btn btn-primary"
+                                                           value="메인페이지로"></a>
                     @endif
                 </div>
             </div>

@@ -13,7 +13,9 @@
             <!-- End calendar -->
             <!-- 실험정보 -->
             <div class="col-md-6">
-                <form name="" onsubmit="" action="" method="post">
+                <form name="" onsubmit="" action="" method="post"
+                      enctype="multipart/form-data">
+                    {!! csrf_field() !!}
                     <div class="form-group btn-spacing">
                         <label>실험 목표 및 내용</label>
                         <input type="text" id="" class="form-control" value="">

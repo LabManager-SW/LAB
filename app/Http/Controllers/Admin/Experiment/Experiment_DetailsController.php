@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Experiment_Details;
+namespace App\Http\Controllers\Admin\Experiment;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
@@ -26,10 +26,15 @@ class Experiment_DetailsController extends Controller
         return view('admin.Experiment_details.index', compact('data'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $testers = Testers::all();
-        $data = Experiment_Details::all();
+
+        if($request->has('experiment_details')){
+            $data = Experiment_Details::where('id', $request['experiment_details'])->first();
+        }
+        else
+            $data=null;
         return view('admin.Experiment_details.new', compact('data', 'testers'));
     }
 

@@ -15,19 +15,17 @@ class CreateExperimentDetailsTable extends Migration
     {
         Schema::create('experiment_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->integer('experiment_id')->unsigned();
             $table->mediumText('objective');
             $table->string('location');
             $table->string('time_taken');
             $table->string('payment');
             $table->mediumText('method_desc');
-            $table->longText('poa');
-            $table->longText('background');
             $table->dateTime('datetime');
-            $table->longText('result')->nullable();
-            $table->longText('remark')->nullable();
             $table->timestamps();
+            $table->foreign('experiment_id')->references('id')->on('experiment')->onDelete('cascade');
         });
+
     }
 
     /**
@@ -37,8 +35,6 @@ class CreateExperimentDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('supervisors_and_others');
-        Schema::dropIfExists('participants');
         Schema::dropIfExists('experiment_details');
     }
 }

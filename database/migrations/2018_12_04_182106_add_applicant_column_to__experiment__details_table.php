@@ -13,8 +13,8 @@ class AddApplicantColumnToExperimentDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::table('Experiment_Details', function (Blueprint $table) {
-            $table->integer('required_applicant')->after('background');
+        Schema::table('experiment_details', function (Blueprint $table) {
+            $table->integer('required_applicant')->after('method_desc');
             $table->integer('applicant')->nullable()->after('required_applicant');
         });
     }
@@ -26,7 +26,7 @@ class AddApplicantColumnToExperimentDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::table('Experiment_Details', function (Blueprint $table) {
+        Schema::table('experiment_details', function (Blueprint $table) {
             $table->dropColumn('required_applicant');
             $table->dropColumn('applicant');
         });

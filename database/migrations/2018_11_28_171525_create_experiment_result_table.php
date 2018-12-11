@@ -22,7 +22,7 @@ class CreateExperimentResultTable extends Migration
             $table->timestamps();
         });
         Schema::table('experiment_result', function($table){
-            $table->foreign('experiment_id')->references('id')->on('experiment_details')->onDelete('cascade');
+            $table->foreign('experiment_id')->references('id')->on('experiment')->onDelete('cascade');
         });
         Schema::table('experiment_result', function($table){
             $table->foreign('participant_id')->references('id')->on('participants')->onDelete('cascade');

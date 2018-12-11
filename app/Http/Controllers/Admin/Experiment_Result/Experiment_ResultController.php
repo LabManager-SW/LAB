@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\File;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 
-use App\Experiment_Details;
+use App\Experiment;
 use App\Experiment_Result;
 use App\Participants;
 
@@ -27,7 +27,7 @@ class Experiment_ResultController extends Controller
     {
         $participant = Participants::all();
         $data = Experiment_Result::all();
-        $experiment = Experiment_Details::all();
+        $experiment = Experiment::all();
         return view('admin.result.index', compact('data', 'participant', 'experiment'));
     }
 
@@ -35,7 +35,7 @@ class Experiment_ResultController extends Controller
     {
         $participant = Participants::all();
         $data = Experiment_Result::all();
-        $experiment = Experiment_Details::all();
+        $experiment = Experiment::all();
         return view('admin.result.create', compact('data', 'participant', 'experiment'));
     }
 
@@ -46,6 +46,7 @@ class Experiment_ResultController extends Controller
         $data['remark'] = $request['remark'];
         $data['experiment_id'] = $request['experiment_id'];
         $data['participant_id'] = $request['participant_id'];
+        $data['datetime'] = $request['datetime'];
 
         /** 실험 결과 파일 있으면 저장해라**/
         if ($request->file('file')) {
@@ -72,7 +73,7 @@ class Experiment_ResultController extends Controller
     {
         $data = Experiment_Result::where('id', $id)->get()[0];
         $participants = Participants::where('experiment_id', $id)->get();
-        $experiment = Experiment_Details::where('id', $data['experiment_id'])->get()[0];
+        $experiment = Experiment::where('id', $data['experiment_id'])->get()[0];
         return view('admin.result.edit', compact('data', 'participants', 'experiment'));
     }
 

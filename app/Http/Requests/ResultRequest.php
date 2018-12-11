@@ -30,6 +30,7 @@ class ResultRequest extends FormRequest
         $rules['experiment_id'] = 'required';
         $rules['participant_id'] = 'required';
         $rules['status'] = 'required';
+        $rules['datetime'] = 'required';
         return $rules;
     }
 
@@ -47,9 +48,10 @@ class ResultRequest extends FormRequest
         return [
             'file' => '실험 결과',
             'remark' => '피험자 특이사항',
-            'experiment_id' => '실험 번호',
+            'experiment_id' => '실험명',
             'participant_id' => '피실험자',
             'status' => '진행 상태',
+            'datetime'=> '실험일자'
         ];
     }
 }
