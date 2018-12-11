@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPhoneToTestersTable extends Migration
+class AddTesterNameToExperimentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddPhoneToTestersTable extends Migration
      */
     public function up()
     {
-        Schema::table('testers', function (Blueprint $table) {
-            $table->string('phone')->unique()->after('email');
+        Schema::table('experiment', function (Blueprint $table) {
+            $table->string('tester_name')->after('background');
         });
     }
 
@@ -25,8 +25,8 @@ class AddPhoneToTestersTable extends Migration
      */
     public function down()
     {
-        Schema::table('testers', function (Blueprint $table) {
-            $table->dropColumn('phone');
+        Schema::table('experiment', function (Blueprint $table) {
+            $table->dropColumn('tester_name');
         });
     }
 }

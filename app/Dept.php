@@ -14,7 +14,4 @@ class Dept extends Model
     public function Univ(){
         return $this->belongsTo(Univ::class);
     }
-    public function testers(){
-        return $this->belongsTo(Testers::class);
-    }
 }

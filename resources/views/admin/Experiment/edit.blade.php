@@ -35,16 +35,11 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="tester_id">담당 연구원</label>
-                        <select id="tester_id" name="tester_id" class="form-control">
-                            <option value={{ $data->tester_id }} selected>{{\Illuminate\Support\Facades\DB::table('testers')->where('id', $data->teser_id)->get()['name']}}</option>
-                            @foreach($tester as $value)
-                                <option value={{$value->id}}>{{$value->name}}</option>
-                                @endforeach
-                        </select>
-                        @if ($errors->has('tester_id'))
+                        <label for="tester_name">담당 연구원</label>
+                        <input type="text" id="tester_name" name="tester_name" class="form-control" value="{{old('tester_name', $data->tester_name)}}">
+                        @if ($errors->has('tester_name'))
                             <div class="help-block">
-                                {{ $errors->first('tester_id') }}
+                                {{ $errors->first('tester_name') }}
                             </div>
                         @endif
                     </div>

@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Acme\Tester;
 use Illuminate\Database\Eloquent\Model;
 
 class Univ extends Model
@@ -11,9 +10,6 @@ class Univ extends Model
     protected $fillable=['name'];
     public function admin(){
         return $this->belongsTo(Admin::class);
-    }
-    public function testers(){
-        return $this->belongsTo(Testers::class);
     }
     public function users(){
         return $this->hasMany(User::class);

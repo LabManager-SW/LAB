@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Participants;
 use App\User;
 use Illuminate\Http\Request;
-use App\Testers;
 use App\Experiment_Details;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

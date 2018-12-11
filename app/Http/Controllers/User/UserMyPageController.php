@@ -5,7 +5,6 @@ namespace App\Http\Controllers\User;
 use App\Participants;
 use App\Http\Controllers\Controller;
 
-use App\Testers;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Experiment_Details;
@@ -32,8 +31,7 @@ class UserMyPageController extends Controller
     public function show(Request $request, $id)
     {
         $value = Experiment_Details::where('id', $id)->first();
-        $tester = Testers::where('id', $value['tester_id'])->first();
-        return view('user.mypage.show', compact('value', 'tester'));
+        return view('user.mypage.show', compact('value'));
     }
 
     public function delete($id)

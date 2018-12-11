@@ -26,7 +26,7 @@ class UploadRequest extends FormRequest
         $rules['name'] = 'required';
         $rules['poa'] = 'required';
         $rules['background'] = 'required';
-        $rules['tester_id'] = 'required';
+        $rules['tester_name'] = 'required';
 
         return $rules;
     }
@@ -46,7 +46,7 @@ class UploadRequest extends FormRequest
             'name' => '실험명',
             'poa' => '실험 목표 및 내용',
             'background' => '실험 추진 배경',
-            'tester_id' => '담당 연구원',
+            'tester_name' => '담당 연구원',
         ];
     }
 }

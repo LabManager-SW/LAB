@@ -1,7 +1,7 @@
 <div id ="page-container" class="header-navbar-fixed">
     <header id="header-navbar" class="content-mini content-mini-full remove-padding">
         <div class="text-center logo_position">
-            <a href="/user_home"><img src="/dongsu/img/img-logo.png" class="logo_size"></a>
+                <a href="/home"><img src="/dongsu/img/img-logo.png" class="logo_size"></a>
         </div>
         <ul class="nav-header pull-right" style="position: absolute; right: 0; top: 20px;">
             <li>

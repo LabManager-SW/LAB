@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\File;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use App\Experiment;
-use App\Testers;
 use App\Http\Requests\UploadRequest;
 use Illuminate\Http\Request;
 
@@ -27,13 +26,12 @@ class ExperimentController extends Controller
 
     public function create(Request $request)
     {
-        $testers = Testers::all();
         $all = Experiment::all();
         if ($request->has('experiment')) {
             $data = Experiment::where('id', $request['experiment'])->first();
         } else
             $data = null;
-        return view('admin.Experiment.create', compact('data', 'testers', 'all'));
+        return view('admin.Experiment.create', compact('data', 'all'));
     }
 
 
@@ -43,7 +41,7 @@ class ExperimentController extends Controller
         $experiment['name'] = $request['name'];
         $experiment['poa'] = $request['poa'];
         $experiment['background'] = $request['background'];
-        $experiment['tester_id'] = $request['tester_id'];
+        $experiment['tester_name'] = $request['tester_name'];
         $experiment->save();
         $message= $experiment['name'] . ' 등록 완료';
         return redirect()->back()->with('message', $message);
@@ -62,7 +60,7 @@ class ExperimentController extends Controller
                 'name' => $request['name'],
                 'poa' => $request['poa'],
                 'background' => $request['background'],
-                'tester_id' => $request['tester_id'],
+                'tester_name' => $request['tester_name'],
             ]);
         return redirect('admin/experiment');
     }

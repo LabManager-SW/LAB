@@ -8,7 +8,7 @@ class Experiment extends Model
 {
     //실험 세부 정보 및 결과
     protected $table='experiment';
-    protected $fillable=['name', 'poa', 'background', 'tester_id'];
+    protected $fillable=['name', 'poa', 'background', 'tester_name'];
     public $timestamps= true;
     public function admin(){
         return $this->belongsTo(Admin::class);

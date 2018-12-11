@@ -34,16 +34,11 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="tester_id">담당 연구원</label>
-                        <select id="tester_id" name="tester_id" class="form-control">
-                            <option disabled selected>담당 연구원을 선택해주세요</option>
-                            @foreach($tester as $value)
-                                <option value={{$value->id}}>{{$value->name}}</option>
-                            @endforeach
-                        </select>
-                        @if ($errors->has('tester_id'))
+                        <label for="tester_name">담당 연구원</label>
+                        <input type="text" id="tester_name" name="tester_name" class="form-control">
+                        @if ($errors->has('tester_name'))
                             <div class="help-block">
-                                {{ $errors->first('tester_id') }}
+                                {{ $errors->first('tester_name') }}
                             </div>
                         @endif
                     </div>
@@ -62,32 +57,6 @@
                 </form>
             </div>
             <!-- End 실험정보 -->
-
-            <!-- 실험 추가 화면 -->
-            <div class="col-md-6 btn-spacing">
-                <h3 class="text-left"><span>OOO</span>이 추가되었습니다.</h3>
-                <div class="btn-spacing">
-                    <select class="js-select2 form-control select2-hidden-accessible" id="example-select2"
-                            name="example-select2" style="width: 100%;" data-placeholder="" tabindex="-1"
-                            aria-hidden="true">
-                        <option>실험명</option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                        @foreach($all as $value)
-                            <option value="{{$value->id}}">{{$value->name}}</option>
-                        @endforeach
-                    </select>
-                    <span class="select2 select2-container select2-container--default select2-container--below"
-                          dir="ltr" style="width: 100%;">
-              <span class="selection"><span class="select2-selection select2-selection--single" role="combobox"
-                                            aria-haspopup="true" aria-expanded="false" tabindex="0"
-                                            aria-labelledby="select2-example-select2-container"><span
-                              class="select2-selection__rendered" id="select2-example-select2-container"></span><span
-                              class="select2-selection__arrow" role="presentation"><b
-                                  role="presentation"></b></span></span></span><span class="dropdown-wrapper"
-                                                                                     aria-hidden="true"></span></span>
-                </div>
-            </div>
-            <!-- End 실험 추가 화면 -->
-
         </div>
     </main>
 @endsection

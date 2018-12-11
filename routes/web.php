@@ -61,11 +61,11 @@ Route::prefix('admin')->group(function () {
     Route::delete('/experiment/{id}', 'Admin\Experiment\ExperimentController@delete')->name('admin.experiment.delete');
     Route::post('/experiment/store/', 'Admin\Experiment\ExperimentController@store')->name('admin.experiment.store');;
 
-    Route::get('/experiment_details/', 'Admin\Experiment\Experiment_DetailsController@index');
-    Route::get('/experiment_details/create', 'Admin\Experiment\Experiment_DetailsController@create')->name('admin.experiment_details.create');
+    Route::get('/experiment_details/{id}/', 'Admin\Experiment\Experiment_DetailsController@index');
+    Route::get('/experiment_details/create/{id}', 'Admin\Experiment\Experiment_DetailsController@create')->name('admin.experiment_details.create');
     Route::get('/experiment_details/{id}/edit', 'Admin\Experiment\Experiment_DetailsController@edit');
     Route::put('/experiment_details/{id}/update', 'Admin\Experiment\Experiment_DetailsController@update')->name('admin.experiment_details.update');
-    Route::delete('/experiment_details/{id}', 'Admin\Experiment\Experiment_DetailsController@delete')->name('admin.experiment_details.delete');
+    Route::delete('/experiment_details/{id}/delete', 'Admin\Experiment\Experiment_DetailsController@delete')->name('admin.experiment_details.delete');
     Route::post('/experiment_details/store/', 'Admin\Experiment\Experiment_DetailsController@store')->name('admin.experiment_details.store');;
 
 
