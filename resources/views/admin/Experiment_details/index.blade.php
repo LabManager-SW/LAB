@@ -169,7 +169,7 @@
             if (confirm('글을 삭제합니다.')) {
                 $.ajax({
                     type: 'DELETE',
-                    url: '/admin/result/user/' + id
+                    url: '/admin/result_user/' + id
                 }).then(function () {
                     window.location.href = '/admin/experiment_details/{{$data['id']}}';
                 })

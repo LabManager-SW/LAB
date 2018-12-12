@@ -85,7 +85,7 @@ Route::prefix('admin')->group(function () {
 //    Route::put('/result/{id}/update', 'Admin\Experiment_Result\Experiment_ResultController@update')->name('admin.result.update');
 
     Route::delete('/result/{id}', 'Admin\Experiment_Result\Experiment_ResultController@delete')->name('admin.result.delete');
-    Route::delete('/result/user/{id}', 'Admin\Experiment_Result\Experiment_ResultController@delete_user')->name('admin.result.delete_user');
+    Route::delete('/result_user/{id}', 'Admin\Experiment_Result\Experiment_ResultController@delete_user')->name('admin.result.delete_user');
 
     Route::post('/result/store/', 'Admin\Experiment_Result\Experiment_ResultController@store')->name('admin.result.store');;
     Route::get('/result/download/{id}', 'Admin\Experiment_Result\Experiment_ResultController@download');

@@ -1,4 +1,4 @@
-<div id ="page-container" class="header-navbar-fixed">
+<div id="page-container" class="header-navbar-fixed">
     <header id="header-navbar" class="content-mini content-mini-full remove-padding">
         <div class="text-center logo_position">
             @if(\Illuminate\Support\Facades\Auth::check())
@@ -6,13 +6,16 @@
                     <a href="/admin/home"><img src="/dongsu/img/img-logo.png" class="logo_size"></a>
                     <ul class="nav-header pull-right" style="position: absolute; right: 0; top: 20px;">
                         <li>
-                            <button id="mobile-slideBt" type="button" class="btn btn-default navbar-toggle hidden-md hidden-lg btn_size" data-toggle="collapse" data-target=".navbar-main-collapse">
+                            <button id="mobile-slideBt" type="button"
+                                    class="btn btn-default navbar-toggle hidden-md hidden-lg btn_size"
+                                    data-toggle="collapse" data-target=".navbar-main-collapse">
                                 <i class="fa fa-navicon fa-2x"></i>
                             </button>
                         </li>
                     </ul>
-                    <div id="header_interval" class="navbar-collapse navbar-main-collapse collapse header_spacing" style="height: 1px;">
-                        <div id = "active_event_1">
+                    <div id="header_interval" class="navbar-collapse navbar-main-collapse collapse header_spacing"
+                         style="height: 1px;">
+                        <div id="active_event_1">
                             <ul id="ul_interval" class="ul_list remove-padding">
                                 <li class="li_list {{preg_match('/\/admin\/home/', $_SERVER['REQUEST_URI']) ? 'active' : ''}}">
                                     <a href="{{url('/admin/home')}}" class="sliding-link">
@@ -34,17 +37,20 @@
                             </ul>
                         </div>
                     </div>
-                    @else
+                @else
                     <a href="/user_home"><img src="/dongsu/img/img-logo.png" class="logo_size"></a>
                     <ul class="nav-header pull-right" style="position: absolute; right: 0; top: 20px;">
                         <li>
-                            <button id="mobile-slideBt" type="button" class="btn btn-default navbar-toggle hidden-md hidden-lg btn_size" data-toggle="collapse" data-target=".navbar-main-collapse">
+                            <button id="mobile-slideBt" type="button"
+                                    class="btn btn-default navbar-toggle hidden-md hidden-lg btn_size"
+                                    data-toggle="collapse" data-target=".navbar-main-collapse">
                                 <i class="fa fa-navicon fa-2x"></i>
                             </button>
                         </li>
                     </ul>
-                    <div id="header_interval" class="navbar-collapse navbar-main-collapse collapse header_spacing" style="height: 1px;">
-                        <div id = "active_event_1">
+                    <div id="header_interval" class="navbar-collapse navbar-main-collapse collapse header_spacing"
+                         style="height: 1px;">
+                        <div id="active_event_1">
                             <ul id="ul_interval" class="ul_list remove-padding">
                                 <li class="li_list {{preg_match('/\/user_home/', $_SERVER['REQUEST_URI']) ? 'active' : ''}}">
                                     <a href="{{url('/user_home')}}" class="sliding-link">
@@ -72,17 +78,20 @@
                         </div>
                     </div>
                 @endif
-                @else
+            @else
                 <a href="/home"><img src="/dongsu/img/img-logo.png" class="logo_size"></a>
                 <ul class="nav-header pull-right" style="position: absolute; right: 0; top: 20px;">
                     <li>
-                        <button id="mobile-slideBt" type="button" class="btn btn-default navbar-toggle hidden-md hidden-lg btn_size" data-toggle="collapse" data-target=".navbar-main-collapse">
+                        <button id="mobile-slideBt" type="button"
+                                class="btn btn-default navbar-toggle hidden-md hidden-lg btn_size"
+                                data-toggle="collapse" data-target=".navbar-main-collapse">
                             <i class="fa fa-navicon fa-2x"></i>
                         </button>
                     </li>
                 </ul>
-                <div id="header_interval" class="navbar-collapse navbar-main-collapse collapse header_spacing" style="height: 1px;">
-                    <div id = "active_event_1">
+                <div id="header_interval" class="navbar-collapse navbar-main-collapse collapse header_spacing"
+                     style="height: 1px;">
+                    <div id="active_event_1">
                         <ul id="ul_interval" class="ul_list remove-padding">
                             <li class="li_list {{preg_match('/\/user_home/', $_SERVER['REQUEST_URI']) ? 'active' : ''}}">
                                 <a href="{{url('/user_home')}}" class="sliding-link">

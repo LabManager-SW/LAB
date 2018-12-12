@@ -126,15 +126,16 @@ class Experiment_ResultController extends Controller
 
     public function delete($id)
     {
-        $participant=Participants::where('id', $id)->delete();
-        $deletes = Experiment_Result::where('participant_id', $id)->first();
-        unlink($deletes['file']); /** ->delete()는 DB의 내용을 지울 뿐. unlink를 함으로써 서버 내  파일의 실제 주소로 가서 파일 삭제**/
-
-        $data = Experiment_Result::where('participant_id', $id)->delete();
+        $i=$id;
+        $deletes = Experiment_Result::where('participant_id', $i)->first();
+        File::delete($deletes['file']); /** ->delete()는 DB의 내용을 지울 뿐. unlink를 함으로써 서버 내  파일의 실제 주소로 가서 파일 삭제**/
+        $participant=Participants::where('id', $i)->delete();
+        $data = Experiment_Result::where('participant_id', $i)->delete();
 
 
         return response()->json([], 204);
     }
+
     public function delete_user($id)
     {
         $decrease=Participants::where('id', $id)->first();
