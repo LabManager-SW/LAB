@@ -38,7 +38,7 @@
             <div class="col-md-6 table-responsive btn-spacing">
                 <div style="width: 80%;">
                     <div class="input-group stylish-input-group">
-                        <form action="/admin/t_search/{{$data->id}}" method="GET" id="tbd_search">
+                        <form action="/admin/t_search/{{$data->id}}" method="GET" id="tbd_search" name="tbd_search">
                             <input type="search" name="search" class="form-control" placeholder="실험 예정된 피험자 검색">
                             <input type="hidden" name="classification" value="TBD">
                             <input type="hidden" name="exp_id" value="{{$data->id}}">
@@ -91,7 +91,7 @@
             <div class="col-md-6 table-responsive btn-spacing">
                 <div style="width: 80%;">
                     <div class="input-group stylish-input-group">
-                        <form action="/admin/c_search/{{$data->id}}" method="GET" id="cw_search">
+                        <form action="/admin/c_search/{{$data->id}}" method="GET" id="cw_search" name="cw_search">
                             <input type="search" name="search" class="form-control" placeholder="실험 완료 피험자 검색">
                             <input type="hidden" name="classification" value="CW">
                             <input type="hidden" name="exp_id" value="{{$data->id}}">

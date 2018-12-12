@@ -22,7 +22,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/logout', 'Auth\LoginController@logout')->name('user.logout');
 
     Route::get('/home', 'HomeController@index')->name('home');
-
+    Route::get('/search', 'SearchController@search');
     /****유저 홈페이지****/
     Route::get('/user_home', 'User\UserHomeController@index')->name('user_home');
     Route::get('/user_home/all', 'User\UserHomeController@show_all')->name('user_home.all');
@@ -78,6 +78,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/result/{id}', 'Admin\Experiment_Result\Experiment_ResultController@show');
     Route::get('/result/create/{id}', 'Admin\Experiment_Result\Experiment_ResultController@create')->name('admin.result.create');
 
+    Route::get('/c_search/{id}', 'Admin\Experiment\AdminSearchController@cw_search')->name('admin.csearch');
+    Route::get('/t_search/{id}', 'Admin\Experiment\AdminSearchController@tbd_search')->name('admin.tsearch');
 
 //    Route::get('/result/{id}/edit', 'Admin\Experiment_Result\Experiment_ResultController@edit');
 //    Route::put('/result/{id}/update', 'Admin\Experiment_Result\Experiment_ResultController@update')->name('admin.result.update');
