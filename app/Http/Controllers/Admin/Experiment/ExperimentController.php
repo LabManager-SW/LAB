@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Experiment;
 
 use App\Experiment_Details;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
 use Carbon\Carbon;
@@ -45,27 +46,27 @@ class ExperimentController extends Controller
         $experiment['background'] = $request['background'];
         $experiment['tester_name'] = $request['tester_name'];
         $experiment->save();
-        $message= $experiment['name'] . ' 등록 완료';
+        $message = $experiment['name'] . ' 등록 완료';
         return redirect()->back()->with('message', $message);
     }
 
-    public function edit($id)
-    {
-        $data = Experiment::where('id', $id)->get()[0];
-        return view('admin.Experiment.edit', compact('data'));
-    }
-
-    public function update(UploadRequest $request, $id)
-    {
-        $data = Experiment::where('id', $id)
-            ->update([
-                'name' => $request['name'],
-                'poa' => $request['poa'],
-                'background' => $request['background'],
-                'tester_name' => $request['tester_name'],
-            ]);
-        return redirect('admin/experiment');
-    }
+//    public function edit($id)
+//    {
+//        $data = Experiment::where('id', $id)->get()[0];
+//        return view('admin.Experiment.edit', compact('data'));
+//    }
+//
+//    public function update(UploadRequest $request, $id)
+//    {
+//        $data = Experiment::where('id', $id)
+//            ->update([
+//                'name' => $request['name'],
+//                'poa' => $request['poa'],
+//                'background' => $request['background'],
+//                'tester_name' => $request['tester_name'],
+//            ]);
+//        return redirect('admin/experiment');
+//    }
 
     public function delete($id)
     {

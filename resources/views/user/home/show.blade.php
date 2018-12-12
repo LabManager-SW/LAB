@@ -24,9 +24,9 @@
                 eventLimit: true, // allow "more" link when too many events
                 // 여기서 PHP 코드로 값 불러와서 작성가능, 아래는 예시로 넣어 놓은 것들
                 events: [
-                        @foreach($data as $value)
+                        @forelse($calendar as $value)
                     {
-                        title: '{{$value['name']}}',
+                        title: '실험명: {{$value['name']}} 일자:{{$value['datetime']}}',
                         time: '{{$value['time_taken']}}',//실험 시간 컬럼
                         tester: '{{$value['tester_name']}}',//연구원명 컬럼들어가야됨
                         start: '{{$value['created_at']}}',
@@ -37,7 +37,8 @@
                         condition: "현재 인원: " + "{{$value['applicant']}}" + '/' + "{{$value['required_applicant']}}",
                         @endif
                     },
-                    @endforeach
+                    @empty
+                    @endforelse
                 ],
 
                 eventRender: function (event, element) {

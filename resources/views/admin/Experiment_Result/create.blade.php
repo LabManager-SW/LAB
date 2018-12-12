@@ -50,26 +50,6 @@
                     </div>
                 @endif
                 </div>
-                {{--<div class="input-group">--}}
-        {{--<span class="input-group-btn">--}}
-          {{--<button id="fake-file-button-browse" type="button" class="btn btn-black">--}}
-            {{--<span class="glyphicon glyphicon-file"></span>--}}
-          {{--</button>--}}
-        {{--</span>--}}
-                    {{--<input type="file" id="files-input-upload" name="file" style="display:none">--}}
-                    {{--<input type="text" id="fake-file-input-name" disabled="disabled" placeholder="File not selected"--}}
-                           {{--class="form-control">--}}
-                    {{--<span class="input-group-btn">--}}
-                       {{--@if ($errors->has('file'))--}}
-                            {{--<div class="help-block">--}}
-                                        {{--{{ $errors->first('file') }}--}}
-                                    {{--</div>--}}
-                        {{--@endif--}}
-                        {{--<button type="button" class="btn btn-default" disabled="disabled" id="fake-file-button-upload">--}}
-            {{--<span class="glyphicon glyphicon-upload"></span>--}}
-          {{--</button>--}}
-        {{--</span>--}}
-                {{--</div>--}}
                 <div class="btn-spacing">
                     <input type="submit" form="result" name="complete" id="complete" class="btn btn-primary"
                            value="입력완료">

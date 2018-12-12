@@ -35,14 +35,16 @@
                     <thead>
                     <th>실험 특이사항</th>
                     <th>실험날짜</th>
-                    <th>자료</th>
+                    <th>등록일</th>
+                    <th style="text-align: center;">자료</th>
                     </thead>
                     <tbody>
                     @forelse($data as $value)
                         <tr>
                             <td>{{$value->remark}}</td>
                             <td>{{$value->datetime}}</td>
-                            <td><a href="{{url('/admin/result/download/'.$data->id)}}"><div class="btn btn-black" >다운</div></a></td>
+                            <td>{{$value->created_at}}</td>
+                            <td><a href="{{url('/admin/result/download/'.$value->id)}}"><div class="btn btn-primary" >다운로드</div></a></td>
                         </tr>
                         @empty
                         <tr>
@@ -53,21 +55,13 @@
                     @endforelse
                     </tbody>
                 </table>
-                <div class="clearfix"></div>
-                <ul class="pagination pull-right">
-                    <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
-                </ul>
+                @if($data->count())
+                    <div class="text-center">
+                        {!! $data->render() !!}
+                    </div>
+                @endif
             </div>
 
-            <div class="col-md-6 btn-spacing">
-                <img src="../static/assets/img/download.png">
-                &nbsp;실험결과 데이터파일 다운받기
-            </div>
             <div class="text-right btn-spacing">
                 <input type="button" onclick="history.go(-1);" name="back" id="back" class="btn btn-primary"
                        value="이전페이지">

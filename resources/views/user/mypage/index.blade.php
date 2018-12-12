@@ -14,7 +14,7 @@
                                 <th>No.</th>
                                 <th>실험명</th>
                                 <th>위치(대학교)</th>
-                                <th>연구원 연락처</th>
+                                <th>연구원 이름</th>
                                 <th>날짜</th>
                                 <th>신청취소</th>
                                 </thead>
@@ -27,9 +27,7 @@
                                     <td onclick="location.href='/user_mypage/{{$value->id}}'"
                                         style="cursor:pointer;">{{$value->name}}</td>
                                     <td>{{$value->location}}</td>
-                                    <td>@foreach(\Illuminate\Support\Facades\DB::table('testers')->where('id', $value->tester_id)->get() as $tester)
-                                            {{$tester->phone}}
-                                        @endforeach</td>
+                                    <td>{{$value->tester_name}}</td>
                                     <td>{{$value->datetime}}</td>
                                     <td>
                                         <p data-placement="top" data-toggle="tooltip" title="Delete"
@@ -66,7 +64,7 @@
                     <div class="text-right">
                     </div>
                     <div class="text-right">
-                        <a href="index.blade.php"><input type="submit" class="btn btn-primary" name="mainpage"
+                        <a href="/user_home"><input type="submit" class="btn btn-primary" name="mainpage"
                                                          value="메인페이지로"></a>
                     </div>
                 </div>

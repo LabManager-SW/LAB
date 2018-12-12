@@ -24,9 +24,9 @@
                 eventLimit: true, // allow "more" link when too many events
                 // 여기서 PHP 코드로 값 불러와서 작성가능, 아래는 예시로 넣어 놓은 것들
                 events: [
-                        @foreach($data as $value)
+                        @forelse($data as $value)
                     {
-                        title: '{{$value['name']}}',
+                        title: '실험명: {{$value['name']}} 일자:{{$value['datetime']}}',
                         time: '{{$value['time_taken']}}',//실험 시간 컬럼
                         tester: '{{$value['tester_name']}}',//연구원명 컬럼들어가야됨
                         start: '{{$value['created_at']}}',
@@ -37,7 +37,8 @@
                         condition: "현재 인원: " + "{{$value['applicant']}}" + '/' + "{{$value['required_applicant']}}",
                         @endif
                     },
-                    @endforeach
+                    @empty
+                    @endforelse
                 ]
             });
         });
@@ -46,7 +47,8 @@
         .options {
             display: none;
         }
-        .options:hover{
+
+        .options:hover {
             background-color: lightgrey;
         }
 
@@ -78,9 +80,11 @@
                         <div>실험 선택</div>
                         <!-- Required for data-placeholder attribute to work with Select2 plugin -->
                         <div class="options" style="cursor:pointer; padding:1vw;">
-                            @foreach($experiment as $value)
+                            @forelse($experiment as $value)
                                 <div onclick="location.href='/admin/experiment_details/{{$value->id}}'">{{$value->name}}</div>
-                            @endforeach
+                            @empty
+                                <div>등록된 실험 없음.</div>
+                            @endforelse
                         </div>
                     </div>
                     <span class="select2 select2-container select2-container--default select2-container--below"

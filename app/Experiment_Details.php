@@ -16,4 +16,7 @@ class Experiment_Details extends Model
     public function experiment(){
         return $this->belongsTo(Experiment::class);
     }
+    public function participants(){
+        return $this->hasMany(Participants::class);
+    }
 }

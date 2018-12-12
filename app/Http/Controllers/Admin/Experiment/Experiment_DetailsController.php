@@ -23,18 +23,21 @@ class Experiment_DetailsController extends Controller
 
     public function index(Request $request)
     {
-        $tbd_participants = Participants::where('experiment_id', $request['id'])->
-            where('status', 'TBD')->get();
-        $cw_participants = Participants::where('experiment_id', $request['id'])->
-        where('status', 'CW')->get();
+        $details=Experiment_Details::where('experiment_id', $request['id'])->get(['id']);
+        $tbd_participants = Participants::whereIn('experiment_id', $details)->
+            where('status', 'TBD')->latest()->paginate(4);
+        $cw_participants = Participants::whereIn('experiment_id', $details)->
+        where('status', 'CW')->latest()->paginate(4);
         $data = Experiment::where('id', $request['id'])->first();
         return view('admin.Experiment_details.index', compact('data', 'tbd_participants', 'cw_participants'));
     }
 
-    public function create(Request $request)
+    public function create(Request $request, $id)
     {
+        $calendar=Experiment_Details::where('experiment_id', $id)->get();
+        $data = Experiment::where('id', $id)->first();
         $participants= Participants::all();
-        return view('admin.Experiment_details.create', compact('participants'));
+        return view('admin.Experiment_details.create', compact('participants','data', 'calendar'));
     }
 
 

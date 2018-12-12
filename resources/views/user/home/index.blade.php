@@ -41,7 +41,7 @@
                 <input type="submit" value="지역별" class="btn btn-secondary">
                 <ul class="btn-spacing list-group">
                     @forelse($data as $value)
-                        <li class="list-group-item">실험 명 : {{$value->name}}</li>
+                        <li class="list-group-item" style="cursor:pointer;" onclick="location.href='/user_home/{{$value->id}}'">실험 명 : {{$value->name}}</li>
                     @empty
                         <li class="list-group-item">없음.</li>
                     @endforelse

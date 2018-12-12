@@ -17,7 +17,6 @@ class UserMyPageController extends Controller
     {
         $user = Auth::user();
         $participants = Participants::where('user_id', $user['id'])->get(['experiment_id']);
-
         $data = Experiment_Details::whereIn('id', $participants)->latest()->paginate(6);
 
         return view('user.mypage.index', compact('data'));
@@ -38,6 +37,7 @@ class UserMyPageController extends Controller
     {
         $user = Auth::user();
         $data = Participants::where('user_id', $user['id'])->where('experiment_id', $id)->first();
+        Experiment_Details::where('id', $data['experiment_id'])->decrement('applicant', 1);
         $delete = $data->delete();
         return "true";
 

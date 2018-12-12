@@ -3,7 +3,7 @@
     <main id="main-container">
         <div class="container logo_spacing">
             <div class="text-center">
-                <h3 style="margin-bottom: 50px;">
+                <h3 style="margin-bottom: 20px;">
                     실험별 데이터
                 </h3>
             </div>
@@ -58,8 +58,8 @@
                             <td style="cursor:pointer;" onclick="location.href='/admin/result/create/{{$value->id}}'">
                                 <div class="btn btn-primary">기록하기</div>
                             </td>
-                            <td style="cursor:pointer;" onclick="location.href='/admin/result/user/{{$value->id}}'">
-                                <div class="btn btn-primary">삭제</div>
+                            <td style="cursor:pointer;" onclick="deletinguser({{$value->id}})">
+                                <button class="btn btn-danger">삭제</button>
                             </td>
                         @empty
                             <td>없음.</td>
@@ -86,14 +86,11 @@
                     <li><input type="button" onclick="" name="delete" id="delete" class="btn btn-secondary" value="삭제">
                     </li>
                 </ul>
-                <ul class="pagination pull-right">
-                    <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
-                </ul>
+                @if($tbd_participants->count())
+                    <div class="text-center">
+                        {!! $tbd_participants->render() !!}
+                    </div>
+                @endif
             </div>
 
             <div class="col-md-6 table-responsive btn-spacing">
@@ -113,8 +110,14 @@
                             <td>{{$value->id}}</td>
                             <td>{{$value->datetime}}</td>
                             <td>{{$value->name}}</td>
-                            <td><div class="btn btn-primary" onclick="location.href='/admin/result/{{$value->id}}'" style="cursor:pointer;">조회</div></td>
-                            <td>{{$value->name}}</td>
+                            <td>
+                                <div class="btn btn-primary" onclick="location.href='/admin/result/{{$value->id}}'"
+                                     style="cursor:pointer;">조회
+                                </div>
+                            </td>
+                            <td style="cursor:pointer;" onclick="deletingresult({{$value->id}})">
+                                <button class="btn btn-danger">삭제</button>
+                            </td>
                         @empty
                             <td>없음.</td>
                             <td>입력값 없음</td>
@@ -136,18 +139,46 @@
                         </div>
                     </li>
                 </ul>
-                <ul class="pagination pull-right">
-                    <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
-                </ul>
+                @if($cw_participants->count())
+                    <div class="text-center">
+                        {!! $cw_participants->render() !!}
+                    </div>
+                @endif
             </div>
 
             <!-- End table, 실험결과 데이터파일 다운받기 -->
         </div>
     </main>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
+        function deletingresult(id) {
+            $('div.id');
+            if (confirm('글을 삭제합니다.')) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/admin/result/' + id
+                }).then(function () {
+                    window.location.href = '/admin/experiment_details/{{$data['id']}}';
+                })
+            }
+        }
+
+        function deletinguser(id) {
+            $('div.id');
+            if (confirm('글을 삭제합니다.')) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/admin/result/user/' + id
+                }).then(function () {
+                    window.location.href = '/admin/experiment_details/{{$data['id']}}';
+                })
+            }
+
+        }
+    </script>
 @endsection

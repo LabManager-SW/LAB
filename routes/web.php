@@ -56,27 +56,31 @@ Route::prefix('admin')->group(function () {
     /** 연구원 실험 공고 관리용 **/
     Route::get('/experiment/', 'Admin\Experiment\ExperimentController@index');
     Route::get('/experiment/create', 'Admin\Experiment\ExperimentController@create')->name('admin.experiment.create');
-    Route::get('/experiment/{id}/edit', 'Admin\Experiment\ExperimentController@edit');
-    Route::put('/experiment/{id}/update', 'Admin\Experiment\ExperimentController@update')->name('admin.experiment.update');
+
+//    Route::get('/experiment/{id}/edit', 'Admin\Experiment\ExperimentController@edit');
+//    Route::put('/experiment/{id}/update', 'Admin\Experiment\ExperimentController@update')->name('admin.experiment.update');
+//
     Route::delete('/experiment/{id}', 'Admin\Experiment\ExperimentController@delete')->name('admin.experiment.delete');
     Route::post('/experiment/store/', 'Admin\Experiment\ExperimentController@store')->name('admin.experiment.store');;
 
     Route::get('/experiment_details/{id}/', 'Admin\Experiment\Experiment_DetailsController@index');
     Route::get('/experiment_details/create/{id}', 'Admin\Experiment\Experiment_DetailsController@create')->name('admin.experiment_details.create');
-    Route::get('/experiment_details/{id}/edit', 'Admin\Experiment\Experiment_DetailsController@edit');
-    Route::put('/experiment_details/{id}/update', 'Admin\Experiment\Experiment_DetailsController@update')->name('admin.experiment_details.update');
+
+//    Route::get('/experiment_details/{id}/edit', 'Admin\Experiment\Experiment_DetailsController@edit');
+//    Route::put('/experiment_details/{id}/update', 'Admin\Experiment\Experiment_DetailsController@update')->name('admin.experiment_details.update');
+//
     Route::delete('/experiment_details/{id}/delete', 'Admin\Experiment\Experiment_DetailsController@delete')->name('admin.experiment_details.delete');
     Route::post('/experiment_details/store/', 'Admin\Experiment\Experiment_DetailsController@store')->name('admin.experiment_details.store');;
 
 
     /** 연구원 실험 결과 관리용 **/
-    Route::get('/result/', 'Admin\Experiment_Result\Experiment_ResultController@index');
+//    Route::get('/result/', 'Admin\Experiment_Result\Experiment_ResultController@index');
     Route::get('/result/{id}', 'Admin\Experiment_Result\Experiment_ResultController@show');
     Route::get('/result/create/{id}', 'Admin\Experiment_Result\Experiment_ResultController@create')->name('admin.result.create');
 
 
-    Route::get('/result/{id}/edit', 'Admin\Experiment_Result\Experiment_ResultController@edit');
-    Route::put('/result/{id}/update', 'Admin\Experiment_Result\Experiment_ResultController@update')->name('admin.result.update');
+//    Route::get('/result/{id}/edit', 'Admin\Experiment_Result\Experiment_ResultController@edit');
+//    Route::put('/result/{id}/update', 'Admin\Experiment_Result\Experiment_ResultController@update')->name('admin.result.update');
 
     Route::delete('/result/{id}', 'Admin\Experiment_Result\Experiment_ResultController@delete')->name('admin.result.delete');
     Route::delete('/result/user/{id}', 'Admin\Experiment_Result\Experiment_ResultController@delete_user')->name('admin.result.delete_user');

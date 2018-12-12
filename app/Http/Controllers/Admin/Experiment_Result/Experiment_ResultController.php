@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\File;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 
-use App\Experiment;
 use App\Experiment_Result;
 use App\Participants;
 
@@ -42,8 +41,8 @@ class Experiment_ResultController extends Controller
     public function show(Request $request, $id)
     {
         $participant=Participants::where('id', $id)->first();
-        $user=User::where('id', $participant['user_id'])->first();
-        $data = Experiment_Result::where('participant_id', $id)->get();
+        $user = User::where('id', $participant['user_id'])->first();
+        $data = Experiment_Result::where('participant_id', $id)->latest()->paginate(4);
         return view('admin.Experiment_Result.check', compact('data', 'user', 'participant'));
     }
 
@@ -88,49 +87,51 @@ class Experiment_ResultController extends Controller
         return redirect('/admin/experiment_details/'.$url['experiment_id']);
     }
 
-    public function edit($id)
-    {
-        $data = Experiment_Result::where('id', $id)->get()[0];
-        $participants = Participants::where('experiment_id', $id)->get();
-        $experiment = Experiment::where('id', $data['experiment_id'])->get()[0];
-        return view('admin.result.edit', compact('data', 'participants', 'experiment'));
-    }
-
-    public function update(ResultRequest $request, $id)
-    {
-        if ($request->file('file')) {
-            $deletes = Experiment_Result::where('id', $id)->get()[0];
-            File::delete($deletes['file']);
-            if (!file_exists('upload')) {
-                File::makeDirectory('upload');
-                if (!file_exists('upload/result')) {
-                    File::makeDirectory('upload/result');
-                    if (!file_exists('upload/result/file')) {
-                        File::makeDirectory('upload/result/file');
-                    }
-                }
-            }
-            $destinationPath = public_path('upload/result/file');
-            $file = $request->file('file');
-            $file_name = 'Result_of_Experiment#' . $request['experiment_id'] . '_participant#' . $request['participant_id'] . '.' . $file->getClientOriginalExtension();
-            $file->move($destinationPath, $file_name);
-            $data = Experiment_Result::where('id', $id)
-                ->update([
-                    'participant_id' => $request['participant_id'],
-                    'remark' => $request['remark'],
-                    'experiment_id' => $request['experiment_id'],
-                    'file' => 'upload/result/file/' . $file_name,
-                ]);
-        }
-        return redirect('admin/result');
-    }
+//    public function edit($id)
+//    {
+//        $data = Experiment_Result::where('id', $id)->get()[0];
+//        $participants = Participants::where('experiment_id', $id)->get();
+//        $experiment = Experiment_Details::where('id', $data['experiment_id'])->get()[0];
+//        return view('admin.result.edit', compact('data', 'participants', 'experiment'));
+//    }
+//
+//    public function update(ResultRequest $request, $id)
+//    {
+//        if ($request->file('file')) {
+//            $deletes = Experiment_Result::where('id', $id)->get()[0];
+//            File::delete($deletes['file']);
+//            if (!file_exists('upload')) {
+//                File::makeDirectory('upload');
+//                if (!file_exists('upload/result')) {
+//                    File::makeDirectory('upload/result');
+//                    if (!file_exists('upload/result/file')) {
+//                        File::makeDirectory('upload/result/file');
+//                    }
+//                }
+//            }
+//            $destinationPath = public_path('upload/result/file');
+//            $file = $request->file('file');
+//            $file_name = 'Result_of_Experiment#' . $request['experiment_id'] . '_participant#' . $request['participant_id'] . '.' . $file->getClientOriginalExtension();
+//            $file->move($destinationPath, $file_name);
+//            $data = Experiment_Result::where('id', $id)
+//                ->update([
+//                    'participant_id' => $request['participant_id'],
+//                    'remark' => $request['remark'],
+//                    'experiment_id' => $request['experiment_id'],
+//                    'file' => 'upload/result/file/' . $file_name,
+//                ]);
+//        }
+//        return redirect('admin/result');
+//    }
 
     public function delete($id)
     {
-        $deletes = Experiment_Result::where('id', $id)->get()[0];
+        $participant=Participants::where('id', $id)->delete();
+        $deletes = Experiment_Result::where('participant_id', $id)->first();
         unlink($deletes['file']); /** ->delete()는 DB의 내용을 지울 뿐. unlink를 함으로써 서버 내  파일의 실제 주소로 가서 파일 삭제**/
 
-        $data = Experiment_result::where('id', $id)->delete();
+        $data = Experiment_Result::where('participant_id', $id)->delete();
+
 
         return response()->json([], 204);
     }
