@@ -38,7 +38,7 @@
 
             <div class="col-md-6 table-responsive btn-spacing">
                 <table id="mytable" class="table table-bordred table-striped">
-                    <caption class="caption-color">실험예정 피험자 목록<a href="../Experiment_Result/store.blade.php">
+                    <caption class="caption-color">실험예정 피험자 목록<a href="../Experiment_Result/create.blade.php">
                             <input type="button" onclick="" name="write" id="write"
                                    class="btn btn-secondary caption-button"
                                    value="실험데이터 기록하기"></a>

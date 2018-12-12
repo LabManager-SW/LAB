@@ -23,6 +23,10 @@ class DetailRequest extends FormRequest
      */
     public function rules()
     {
+        $rules['name'] = 'required';
+        $rules['poa'] = 'required';
+        $rules['background'] = 'required';
+        $rules['tester_name'] = 'required';
         $rules['location'] = 'required';
         $rules['end_recruit_date'] = 'required';
         $rules['time_taken'] = 'required';
@@ -32,7 +36,7 @@ class DetailRequest extends FormRequest
         $rules['health_condition'] = 'required';
         $rules['required_applicant'] = 'required|integer';
         $rules['applicant'] = 'nullable';
-        $rules['datetime'] = 'nullable';
+        $rules['datetime'] = 'required';
 
         return $rules;
     }
@@ -46,6 +50,10 @@ class DetailRequest extends FormRequest
     public function attributes()
     {
         return[
+            'name' => '실험명',
+            'poa' => '실험 목표 및 내용',
+            'background' => '실험 추진 배경',
+            'tester_name' => '담당 연구원',
             'location' => '실험 장소',
             'time_taken' => '소요 시간',
             'payment' => '피실험자 수당',

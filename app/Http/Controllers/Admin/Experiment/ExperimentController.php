@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Experiment;
 
+use App\Experiment_Details;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
 use Carbon\Carbon;
@@ -20,8 +21,9 @@ class ExperimentController extends Controller
 
     public function index()
     {
-        $data = Experiment::all();
-        return view('admin.Experiment.index', compact('data'));
+        $data = Experiment_Details::all();
+        $experiment = Experiment::all();
+        return view('admin.Experiment.index', compact('data', 'experiment'));
     }
 
     public function create(Request $request)

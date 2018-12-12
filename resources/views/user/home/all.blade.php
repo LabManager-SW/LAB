@@ -36,8 +36,6 @@
                     <th>실험명</th>
                     <th>위치</th>
                     <th>수당</th>
-                    <th>주관 대학</th>
-                    <th>주관 학부</th>
                     <th>날짜</th>
                     </thead>
                     <tbody>
@@ -47,8 +45,6 @@
                             <td>{{$value->name}}</td>
                             <td>{{$value->location}}</td>
                             <td>{{$value->payment}}</td>
-                            <td>{{\Illuminate\Support\Facades\DB::table('testers')->where('id', $value->tester_id)->value('univ')}}</td>
-                            <td>{{\Illuminate\Support\Facades\DB::table('testers')->where('id', $value->tester_id)->value('dept')}}</td>
                             <td>{{$value->datetime}}}</td>
                         </tr>
                     @empty

@@ -11,7 +11,9 @@
             <div>
                 <h4>실험명: {{$data->name}}</h4><!--클릭한 데이터가 넘어와야 됨-->
                 <div class="btn-spacing"></div>
-                <div class="btn btn-secondary" onclick="location.href='/admin/experiment_details/create/{{$data->id}}'">실험 일정 추가 및 공고</div>
+                <div class="btn btn-secondary" onclick="location.href='/admin/experiment_details/create/{{$data->id}}'">
+                    실험 일정 추가 및 공고
+                </div>
                 <div class="table-responsive btn-spacing">
                     <table id="mytable" class="table table-bordred table-striped">
                         <thead>
@@ -36,25 +38,36 @@
 
             <div class="col-md-6 table-responsive btn-spacing">
                 <table id="mytable" class="table table-bordred table-striped">
-                    <caption class="caption-color">실험예정 피험자 목록<a href="../Experiment_Result/store.blade.php">
-                            <input type="button" onclick="location.href='{{url('/admin/result/create')}}'" name="write" id="write"
-                                   class="btn btn-secondary caption-button"
-                                   value="실험데이터 기록하기"></a>
+                    <caption class="caption-color">실험예정 피험자 목록
                     </caption>
                     <thead>
                     <tr>
-                        <th></th>
                         <th>No.</th>
                         <th>실험 날짜</th>
                         <th>피험자</th>
+                        <th>기록</th>
+                        <th>삭제</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td><input type="checkbox" class="checkthis"></td>
-                        <td></td>
-                        <td>OO/OO</td>
-                        <td></td>
+                        @forelse($tbd_participants as $value)
+                            <td>{{$value->id}}</td>
+                            <td>{{$value->datetime}}</td>
+                            <td>{{$value->name}}</td>
+                            <td style="cursor:pointer;" onclick="location.href='/admin/result/create/{{$value->id}}'">
+                                <div class="btn btn-primary">기록하기</div>
+                            </td>
+                            <td style="cursor:pointer;" onclick="location.href='/admin/result/user/{{$value->id}}'">
+                                <div class="btn btn-primary">삭제</div>
+                            </td>
+                        @empty
+                            <td>없음.</td>
+                            <td>입력값 없음</td>
+                            <td>없음</td>
+                            <td>없음</td>
+                            <td>없음</td>
+                        @endforelse
                     </tr>
                     </tbody>
                 </table>
@@ -85,26 +98,28 @@
 
             <div class="col-md-6 table-responsive btn-spacing">
                 <table id="mytable" class="table table-bordred table-striped">
-                    <caption class="caption-color">실험완료 피험자 목록<a href="../Experiment_Result/check.blade.php"><input
-                                    type="button" onclick=""
-                                    name="write" id="write"
-                                    class="btn btn-secondary caption-button"
-                                    value="실험데이터 조회하기"></a>
-                    </caption>
                     <thead>
                     <tr>
-                        <th></th>
                         <th>No.</th>
                         <th>실험 날짜</th>
                         <th>피험자</th>
+                        <th>조회</th>
+                        <th>삭제</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td><input type="checkbox" class="checkthis"></td>
-                        <td>1</td>
-                        <td>OO/OO</td>
-                        <td></td>
+                        @forelse($cw_participants as $value)
+                            <td>{{$value->id}}</td>
+                            <td>{{$value->datetime}}</td>
+                            <td>{{$value->name}}</td>
+                            <td><div class="btn btn-primary" onclick="location.href='/admin/result/{{$value->id}}'" style="cursor:pointer;">조회</div></td>
+                            <td>{{$value->name}}</td>
+                        @empty
+                            <td>없음.</td>
+                            <td>입력값 없음</td>
+                            <td>없음</td>
+                        @endforelse
                     </tr>
                     </tbody>
                 </table>

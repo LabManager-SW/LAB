@@ -118,35 +118,20 @@
                 eventLimit: true, // allow "more" link when too many events
                 // 여기서 PHP 코드로 값 불러와서 작성가능, 아래는 예시로 넣어 놓은 것들
                 events: [
+                        @foreach($data as $value)
                     {
-                        title: 'All Day Event',
-                        start: '2018-11-01'
+                        title: '{{$value['name']}}',
+                        time: '{{$value['time_taken']}}',//실험 시간 컬럼
+                        tester: '{{$value['tester_name']}}',//연구원명 컬럼들어가야됨
+                        start: '{{$value['created_at']}}',
+                        end: '{{$value['end_recruit_date']}}',
+                        @if($value['required_applicant'] === $value['applicant'])
+                        condition: "모집 완료",
+                        @else
+                        condition: "현재 인원: " + "{{$value['applicant']}}" + '/' + "{{$value['required_applicant']}}",
+                        @endif
                     },
-                    {
-                        title: 'Long Event',
-                        start: '2018-11-03',
-                        end: '2018-11-10'
-                    },
-                    {
-                        id: 999,
-                        title: 'Repeating Event',
-                        start: '2018-11-09T16:00:00'
-                    },
-                    {
-                        id: 999,
-                        title: 'Repeating Event',
-                        start: '2018-11-16T16:00:00'
-                    },
-                    {
-                        title: 'Conference',
-                        start: '2018-11-11',
-                        end: '2015-02-13'
-                    },
-                    {
-                        title: 'Click for Google',
-                        url: 'http://google.com/',
-                        start: '2018-11-28'
-                    }
+                @endforeach
                 ]
             });
         });

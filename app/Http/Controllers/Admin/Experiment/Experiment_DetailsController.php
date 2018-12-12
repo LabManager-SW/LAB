@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Experiment_Details;
 use App\Experiment_Result;
 use App\Participants;
-use App\Http\Requests\UploadRequest;
+use App\Http\Requests\DetailRequest;
 use Illuminate\Http\Request;
 
 class Experiment_DetailsController extends Controller
@@ -23,22 +23,30 @@ class Experiment_DetailsController extends Controller
 
     public function index(Request $request)
     {
-        $participants = Participants::where('experiment_id', $request['id'])->get();
+        $tbd_participants = Participants::where('experiment_id', $request['id'])->
+            where('status', 'TBD')->get();
+        $cw_participants = Participants::where('experiment_id', $request['id'])->
+        where('status', 'CW')->get();
         $data = Experiment::where('id', $request['id'])->first();
-        return view('admin.Experiment_details.index', compact('data', 'participants'));
+        return view('admin.Experiment_details.index', compact('data', 'tbd_participants', 'cw_participants'));
     }
 
     public function create(Request $request)
     {
-        $all_data = Experiment::all();
-        $data = Experiment::where('id', $request['id'])->first();
-        return view('admin.Experiment_details.create', compact('data', 'all_data'));
+        $participants= Participants::all();
+        return view('admin.Experiment_details.create', compact('participants'));
     }
 
 
-    public function store(UploadRequest $request)
+    public function store(DetailRequest $request)
     {
+
         $experiment_details = new Experiment_Details;
+        $experiment_details['name'] = $request['name'];
+        $experiment_details['experiment_id'] = $request['experiment_id'];
+        $experiment_details['poa'] = $request['poa'];
+        $experiment_details['background'] = $request['background'];
+        $experiment_details['tester_name'] = $request['tester_name'];
         $experiment_details['time_taken'] = $request['time_taken'];
         $experiment_details['end_recruit_date'] = $request['end_recruit_date'];
         $experiment_details['payment'] = $request['payment'];
@@ -60,10 +68,14 @@ class Experiment_DetailsController extends Controller
         return view('admin.Experiment_details.edit', compact('data', 'soa'));
     }
 
-    public function update(UploadRequest $request, $id)
+    public function update(DetailRequest $request, $id)
     {
         $data = Experiment_Details::where('id', $id)
             ->update([
+                'name' => $request['name'],
+                'poa' => $request['poa'],
+                'background' => $request['background'],
+                'tester_name' => $request['tester_name'],
                 'location' => $request['location'],
                 'end_recruit_date' => $request['end_recruit_date'],
                 'time_taken' => $request['time_taken'],

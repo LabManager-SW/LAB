@@ -29,7 +29,6 @@ class ResultRequest extends FormRequest
         $rules['remark'] = 'required';
         $rules['experiment_id'] = 'required';
         $rules['participant_id'] = 'required';
-        $rules['status'] = 'required';
         $rules['datetime'] = 'required';
         return $rules;
     }

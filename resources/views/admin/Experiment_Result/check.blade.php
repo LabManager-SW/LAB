@@ -9,21 +9,21 @@
             </div>
             <!-- table, 실험결과 데이터파일 다운받기 -->
             <div class="col-xs-12">
-                <h4>실험명: OOOOO</h4><!--클릭한 데이터가 넘어와야 됨-->
+                <h4>실험명: {{$participant->exp_name}}</h4><!--클릭한 데이터가 넘어와야 됨-->
                 <div class="table-responsive btn-spacing">
                     <table id="mytable" class="table table-bordred table-striped">
                         <thead>
                         <th>이름</th>
                         <th>성별</th>
-                        <th>나이</th>
+                        <th>생년월일</th>
                         <th>이메일</th>
                         </thead>
                         <tbody>
                         <tr>
-                            <td>하동수</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->gender}}</td>
+                            <td>{{$user->birth}}</td>
+                            <td>{{$user->email}}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -35,14 +35,22 @@
                     <thead>
                     <th>실험 특이사항</th>
                     <th>실험날짜</th>
-                    <th><input type="checkbox" id="checkall"></th>
+                    <th>자료</th>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>하동수</td>
-                        <td></td>
-                        <td><input type="checkbox" class="checkthis"></td>
-                    </tr>
+                    @forelse($data as $value)
+                        <tr>
+                            <td>{{$value->remark}}</td>
+                            <td>{{$value->datetime}}</td>
+                            <td><a href="{{url('/admin/result/download/'.$data->id)}}"><div class="btn btn-black" >다운</div></a></td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td>없음.</td>
+                            <td>없음.</td>
+                            <td></td>
+                        </tr>
+                    @endforelse
                     </tbody>
                 </table>
                 <div class="clearfix"></div>

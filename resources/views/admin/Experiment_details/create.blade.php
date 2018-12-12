@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <link rel="stylesheet" href="../static/assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
     <main id="main-container">
         <div class="container logo_spacing">
             <div class="text-center"><h3 style="margin-bottom: 50px;">실험일정 추가 및 공고</h3></div>
@@ -13,7 +12,7 @@
             <!-- End calendar -->
             <!-- 실험정보 -->
             <div class="col-md-6">
-                <form name="details" action="{{route('admin.experiment_details.store')}}" method="post"
+                <form name="details" id="details" action="{{route('admin.experiment_details.store')}}" method="POST"
                       enctype="multipart/form-data">
                     {!! csrf_field() !!}
                     <div class="form-group btn-spacing">
@@ -53,8 +52,17 @@
                         @endif
                     </div>
                     <div class="form-group">
+                        <label for="required_applicant">피실험자 필요 인원 수</label>
+                        <input type="number" id="required_applicant" name="required_applicant" class="form-control">
+                        @if ($errors->has('required_applicant'))
+                            <div class="help-block">
+                                {{ $errors->first('required_applicant') }}
+                            </div>
+                        @endif
+                    </div>
+                    <div class="form-group">
                         <label for="payment">피실험자 수당</label>
-                        <input type="text" id="payment" class="form-control">
+                        <input type="text" id="payment" name="payment" class="form-control">
                         @if ($errors->has('payment'))
                             <div class="help-block">
                                 {{ $errors->first('payment') }}
@@ -71,12 +79,33 @@
                         @endif
                     </div>
                     <div class="form-group">
+                        <label for="datetime">공고 모집 마감일</label>
+                        <input type="datetime-local" id="end_recruit_date" name="end_recruit_date" class="form-control">
+                        @if ($errors->has('end_recruit_date'))
+                            <div class="help-block">
+                                {{ $errors->first('end_recruit_date') }}
+                            </div>
+                        @endif
+                    </div>
+                    <div class="form-group">
                         <label for="datetime">실험 날짜 및 시간</label>
                         <input type="datetime-local" id="datetime" name="datetime" class="form-control">
+                        @if ($errors->has('datetime'))
+                            <div class="help-block">
+                                {{ $errors->first('datetime') }}
+                            </div>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" id="experiment_id" name="experiment_id" class="form-control" value="{{$data->id}}">
+                        <input type="hidden" id="name" name="name" class="form-control" value="{{$data->name}}">
+                        <input type="hidden" id="poa" name="poa" class="form-control" value="{{$data->poa}}">
+                        <input type="hidden" id="background" name="background" class="form-control" value="{{$data->background}}">
+                        <input type="hidden" id="tester_name" name="tester_name" class="form-control" value="{{$data->tester_name}}">
                     </div>
 
                     <div class="text-right btn-spacing">
-                        <input type="submit" name="enroll" id="enroll" class="btn btn-primary" value="등록하기">
+                        <input type="submit" form="details" class="btn btn-primary" value="등록하기">
                         <input type="button" onclick="history.go(-1);" name="back" id="back" class="btn btn-primary"
                                value="이전페이지">
                     </div>
@@ -86,82 +115,4 @@
             </div>
         </div>
     </main>
-@endsection
-@section('script')
-    <script src="../static/assets/js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
-
-
-    <!-- Page JS Plugins -->
-    <script src="../static/assets/js/app.js?ver=2018072001"></script>
-
-    <!-- List javascript -->
-    <script>
-        App.init('uiInit');
-        var header = document.getElementById("active_event_1");
-        var lists = header.getElementsByClassName("li_list");
-        for (var i = 0; i < lists.length; i++) {
-            lists[i].addEventListener("click", function () {
-                var current = document.getElementsByClassName("active");
-                current[0].className = current[0].className.replace(" active", "");
-                this.className += " active";
-            });
-        }
-        $("#mobile-slideBt").click(function () {
-            if ($(".collapse").hasClass("in")) {
-                $(".header_bg").hide()
-            }
-            else {
-                $(".header_bg").show()
-            }
-        })
-        $(".li_list").click(function () {
-            $(".header_bg").hide()
-            $('.collapse').collapse('hide')
-        })
-
-        $(".ul_arrow_list").click(function () {
-            $(".header_bg").hide()
-            $('.collapse').collapse('hide')
-        })
-
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            $('#calendar').fullCalendar({
-
-                <!--Header Section Including Previous,Next and Today-->
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,basicWeek,basicDay'
-                },
-
-                <!--Default Date-->
-                defaultDate: '{{\Carbon\Carbon::now()}}', lang: 'ko',
-                editable: true,
-
-                <!--Event Section-->
-                eventLimit: true, // allow "more" link when too many events
-                // 여기서 PHP 코드로 값 불러와서 작성가능, 아래는 예시로 넣어 놓은 것들
-                events: [
-                        @foreach($all_data as $value)
-                    {
-                        title: '{{$value['name']}}',
-                        time: '{{$value['time_taken']}}',//실험 시간 컬럼
-                        tester: '{{$value['tester_name']}}',//연구원명 컬럼들어가야됨
-                        start: '{{$value['created_at']}}',
-                        end: '{{$value['end_recruit_date']}}',
-                        @if($value['required_applicant'] === $value['applicant'])
-                        condition: "모집 완료",
-                        @else
-                        condition: "현재 인원: " + "{{$value['applicant']}}" + '/' + "{{$value['required_applicant']}}",
-                        @endif
-                    },
-                    @endforeach
-                ]
-            });
-        });
-    </script>
-
 @endsection

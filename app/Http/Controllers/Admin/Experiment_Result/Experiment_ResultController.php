@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin\Experiment_Result;
 
 
+use App\Experiment_Details;
 use App\Http\Requests\ResultRequest;
+use App\User;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
 use Carbon\Carbon;
@@ -23,20 +25,26 @@ class Experiment_ResultController extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function index()
-    {
-        $participant = Participants::all();
-        $data = Experiment_Result::all();
-        $experiment = Experiment::all();
-        return view('admin.result.index', compact('data', 'participant', 'experiment'));
-    }
+//    public function index()
+//    {
+//        $participant = Participants::all();
+//        $data = Experiment_Result::all();
+//        $experiment = Experiment::all();
+//        return view('admin.result.index', compact('data', 'participant', 'experiment'));
+//    }
 
-    public function create()
+    public function create(Request $request)
     {
-        $participant = Participants::all();
-        $data = Experiment_Result::all();
-        $experiment = Experiment::all();
-        return view('admin.result.create', compact('data', 'participant', 'experiment'));
+        $participant = Participants::where('id', $request['id'])->first();
+        $experiment = Experiment_Details::where('id', $participant['experiment_id'])->first();
+        return view('admin.Experiment_Result.create', compact( 'participant', 'experiment'));
+    }
+    public function show(Request $request, $id)
+    {
+        $participant=Participants::where('id', $id)->first();
+        $user=User::where('id', $participant['user_id'])->first();
+        $data = Experiment_Result::where('participant_id', $id)->get();
+        return view('admin.Experiment_Result.check', compact('data', 'user', 'participant'));
     }
 
 
@@ -47,6 +55,14 @@ class Experiment_ResultController extends Controller
         $data['experiment_id'] = $request['experiment_id'];
         $data['participant_id'] = $request['participant_id'];
         $data['datetime'] = $request['datetime'];
+        $url=Experiment_Details::where('id',$request['experiment_id'])->first();
+
+        $participant= Participants::where('id', $request['participant_id'])->first();
+        $status = Participants::where('id', $request['participant_id'])
+            ->update([
+                'status'=> 'CW'
+            ]);
+        $exp= Experiment_Details::where('id', $request['experiment_id'])->first();
 
         /** 실험 결과 파일 있으면 저장해라**/
         if ($request->file('file')) {
@@ -59,14 +75,17 @@ class Experiment_ResultController extends Controller
                     }
                 }
             }
+
             $destinationPath = public_path('upload/result/file');
             $file = $request->file('file');
-            $file_name = 'Result_of_Experiment#' . $request['experiment_id'] . '_participant#' . $request['participant_id'] . '.' . $file->getClientOriginalExtension();
+            $date = Carbon::now();
+            $file_name = $participant['name'].'_'.$exp['name'].$exp['id'].'_결과'.'.' . $file->getClientOriginalExtension();
             $file->move($destinationPath, $file_name);
+
             $data['file'] = 'upload/result/file/' . $file_name;
         }
         $data->save();
-        return back();
+        return redirect('/admin/experiment_details/'.$url['experiment_id']);
     }
 
     public function edit($id)
@@ -112,6 +131,14 @@ class Experiment_ResultController extends Controller
         unlink($deletes['file']); /** ->delete()는 DB의 내용을 지울 뿐. unlink를 함으로써 서버 내  파일의 실제 주소로 가서 파일 삭제**/
 
         $data = Experiment_result::where('id', $id)->delete();
+
+        return response()->json([], 204);
+    }
+    public function delete_user($id)
+    {
+        $decrease=Participants::where('id', $id)->first();
+        $data=Participants::where('id', $id)->delete();
+        Experiment_Details::where('id', $decrease['experiment_id'])->decrement('applicant', 1);/**해당 실험 공고의 지원자 수 1 감소**/;
 
         return response()->json([], 204);
     }

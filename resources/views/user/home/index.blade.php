@@ -21,9 +21,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"
                              onclick="location.href='/user_home/{{$value->id}}'" style="cursor:pointer;">
                             <div class="box-part text-left">
-              <span><h4>
-                      {{\Illuminate\Support\Facades\DB::table('testers')->where('id', $value->tester_id)->value('univ')}}
-                      {{\Illuminate\Support\Facades\DB::table('testers')->where('id', $value->tester_id)->value('dept')}}</h4></span>
+              <span><h4>{{$value->location}}</h4></span>
                                 <div class="text">
                                 </div>
                                 <span> {{$value->payment}}, {{$value->datetime}}, {{$value->name}}</span>

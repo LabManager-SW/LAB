@@ -8,7 +8,7 @@ class Participants extends Model
 {
     //특정 실험 참가 피실험자용
     protected $table='participants';
-    protected $fillable=['experiment_id', 'user_id', 'name', 'status'];
+    protected $fillable=['experiment_id', 'user_id', 'name', 'status', 'datetime'];
     public $timestamps= true;
     public function admin(){
         return $this->belongsTo(Admin::class);

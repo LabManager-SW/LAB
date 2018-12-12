@@ -35,8 +35,7 @@ class UserHomeController extends Controller
     {
         $all_data = Experiment_Details::all();
         $data = Experiment_Details::where('id', $id)->first();
-        $tester = Testers::where('id', $data['tester_id'])->first();
-        return view('user.home.show', compact('data', 'tester', 'all_data'));
+        return view('user.home.show', compact('data', 'all_data'));
     }
 
     public function apply(Request $request, $exp_id, $id)
@@ -59,7 +58,8 @@ class UserHomeController extends Controller
                 $participant['experiment_id'] = $exp['id'];
                 $participant['exp_name'] = $exp['name'];
                 $participant['name'] = $user['name'];
-                $participant['status'] = 'To Be Started';
+                $participant['status'] = 'TBD';
+                $participant['datetime']= $exp['datetime'];
                 $participant->save();
                 $message = "해당 공고 지원 완료!";
             }

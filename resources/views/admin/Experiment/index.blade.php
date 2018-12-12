@@ -78,7 +78,7 @@
                         <div>실험 선택</div>
                         <!-- Required for data-placeholder attribute to work with Select2 plugin -->
                         <div class="options" style="cursor:pointer; padding:1vw;">
-                            @foreach($data as $value)
+                            @foreach($experiment as $value)
                                 <div onclick="location.href='/admin/experiment_details/{{$value->id}}'">{{$value->name}}</div>
                             @endforeach
                         </div>
