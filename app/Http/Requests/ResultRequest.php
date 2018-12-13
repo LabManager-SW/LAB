@@ -23,8 +23,6 @@ class ResultRequest extends FormRequest
      */
     public function rules()
     {
-//        $file = count($this->input('file'));
-//        foreach (range(0, $file) as $index) {
         $rules['file'] = 'required|max:20000';
         $rules['remark'] = 'required';
         $rules['experiment_id'] = 'required';
@@ -32,7 +30,6 @@ class ResultRequest extends FormRequest
         $rules['datetime'] = 'required';
         return $rules;
     }
-
     public function messages()
     {
         return [
@@ -41,7 +38,6 @@ class ResultRequest extends FormRequest
             'max' => ':attruibute은(는) 최대 :max 글자 이상 입력해야 합니다.',
         ];
     }
-
     public function attributes()
     {
         return [
