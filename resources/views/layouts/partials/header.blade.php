@@ -47,7 +47,7 @@
         if ($(".collapse").hasClass("in")) {
             $(".header_bg").hide();
         }
-        else {
+        else {  
             $(".header_bg").show();
         }
     });
