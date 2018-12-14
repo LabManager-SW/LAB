@@ -43,7 +43,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/home', 'Admin\Experiment\ExperimentController@index')->name('admin_home');
     /** 연구원 Auth **/
     Route::get('/register', ['as' => 'register', 'uses' => 'Auth\AdminRegisterController@showRegistrationForm'])->name('admin.register');
-    Route::post('/register', ['as' => '', 'uses' => 'Auth\AdminRegisterController@create'])->name('admin.register');
+    Route::post('/register', ['as' => '', 'uses' => 'Auth\AdminRegisterController@register'])->name('admin.register');
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
     Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
