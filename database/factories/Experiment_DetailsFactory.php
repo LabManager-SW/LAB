@@ -3,11 +3,8 @@
 use Faker\Generator as Faker;
 
 $factory->define(\App\Experiment_Details::class, function (Faker $faker) {
-    $tester_id = \App\Testers::select('id')->get();
+    $tester_id = $faker->name;
     $tester_id_array = array();
-    foreach ($tester_id as $id) {
-        array_push($tester_id_array, $id->id);
-    }
     $rand=random_int(0,10);
     $now=\Carbon\Carbon::now()->addDays($rand);
     return [
@@ -23,6 +20,6 @@ $factory->define(\App\Experiment_Details::class, function (Faker $faker) {
         'required_applicant' => 10,
         'end_recruit_date' => $now ,
         'applicant' => $rand,
-        'tester_id' => $faker->randomElement($tester_id_array),
+        'tester_name' => $faker->randomElement($tester_id_array),
     ];
 });

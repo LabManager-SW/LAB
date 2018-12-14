@@ -87,6 +87,7 @@ class AdminRegisterController extends Controller
             ->roles()
             ->attach(Role::where('name', 'admin')->first());
 
+
         return $user;
     }
     public function showRegistrationForm()

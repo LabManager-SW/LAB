@@ -34,7 +34,7 @@
                     <label for="tester_name">담당 연구원</label>
                     <input type="text" id="tester_name" class="form-control" value="{{$value->tester_name}}" disabled>
                 </div>
-               
+
             </div>
             <!-- End 실험정보 -->
         </div>
