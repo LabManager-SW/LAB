@@ -23,11 +23,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Lab-Manager">
-<meta property="og:description" content="We bring an easy blockchain to your business">
+<meta property="og:description" content="Easy participation platform for lab part-time">
 <meta property="og:url" content="http://127.0.0.1:8000/">
-<meta property="og:image" content="http://127.0.0.1:8000/dongsu/img/pb_logo_preview.png">
-<meta property="og:image:width" content="800">
-<meta property="og:image:height" content="400">
 <link rel="shortcut icon" href="/dongsu/favicon_32.png">
 
 <!-- Stylesheets -->
